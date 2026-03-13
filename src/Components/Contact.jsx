@@ -255,8 +255,8 @@ export default function GetInTouch() {
           {/* ── RIGHT — Values ── */}
           <div className="flex flex-col">
             <p
-              className="uppercase text-gray-400 tracking-widest mb-8"
-              style={{ fontSize: 9, letterSpacing: '0.3em' }}
+              className="uppercase text-gray-400 tracking-widest mb-8 text-black"
+              style={{ fontSize: 20, letterSpacing: '0.3em, color:black' }}
             >
               What We Stand For
             </p>

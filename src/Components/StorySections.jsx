@@ -72,12 +72,12 @@ function RejectionCard({ item, i, inView }) {
 /* ── Chapter data ── */
 const chapters = [
   {
-    num: "01", emoji: "🌿", title: "The Problem",
+    num: "", emoji: "🌿", title: "The Problem",
     body: "After a decade in high-pressure corporate environments — back to back meetings, calls that spill into evenings, the quiet normalisation of depletion — I noticed something nobody was talking about openly: the workday was ending, but the nervous system wasn't getting the memo.",
     quote: "I wasn't burnt out. Burnt out sounds dramatic. This was quieter — the kind of exhaustion where you're performing okay at everything and feeling nothing about any of it.",
   },
   {
-    num: "02", emoji: "🔍", title: "The Search",
+    num: "", emoji: "🔍", title: "The Search",
     body: "I tried everything the market offered. Nothing worked — not because I was broken, but because they were built for a different problem.",
     grid: [
       { label: "Meditation Apps", reason: "Needs 20 min of stillness you don't have" },
@@ -89,7 +89,7 @@ const chapters = [
     ],
   },
   {
-    num: "03", emoji: "✨", title: "The Discovery",
+    num: "", emoji: "✨", title: "The Discovery",
     body: "The olfactory system is the only one of your five senses with a direct pathway to the limbic brain — the part that governs emotion, memory, and stress response. Every other sense has to pass through the thalamus first. Scent just arrives.",
     highlight: "Scent is the only sense that talks directly to your emotions — no middleman.",
   },
@@ -139,12 +139,12 @@ function ChapterCard({ chapter, index }) {
             {chapter.emoji}
           </div>
           <div>
-            <p
+            {/* <p
               className="text-xs font-bold tracking-[0.2em] uppercase mb-0.5"
               style={{ color: "#555", fontFamily: "'DM Sans', sans-serif" }}
             >
               Chapter {chapter.num}
-            </p>
+            </p> */}
             <h3
               className="text-3xl md:text-4xl font-black leading-tight"
               style={{
@@ -215,7 +215,7 @@ function ChapterCard({ chapter, index }) {
         {/* Highlight */}
         {chapter.highlight && (
           <div
-            className="inline-flex items-center gap-3 rounded-full px-6 py-3 mt-2"
+            className="inline-flex items-center ml-8 gap-3 rounded-full px-6 py-3 mt-2"
             style={{
               background: "#f4f2ed",
               border: "1.5px solid #d8d4cc",
@@ -225,8 +225,8 @@ function ChapterCard({ chapter, index }) {
               transitionDelay: `${index * 80 + 500}ms`,
             }}
           >
-            <span className="text-lg">💡</span>
-            <p className="text-sm font-semibold" style={{ color: "#333", fontFamily: "'DM Sans', sans-serif" }}>
+         
+            <p className="text-sm font-semibold ml-8 " style={{ color: "#333", fontFamily: "'DM Sans', sans-serif",textAlign:'text-center' }}>
               {chapter.highlight}
             </p>
           </div>
