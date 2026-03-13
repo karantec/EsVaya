@@ -9,7 +9,7 @@ const LINES = [
   { text: 'We built Esvaya for that specific, unnamed feeling —\nthe one nobody is talking about, but everyone is experiencing.', italic: false,  },
 ]
 
-const TYPING_SPEED = 30
+const TYPING_SPEED = 60
 const GAP_BETWEEN = 3000
 
 export default function TypewriterSection() {
