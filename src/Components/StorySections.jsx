@@ -350,12 +350,12 @@ export default function EsvayaStory() {
       `}</style>
 
       {/* Background orbs — neutral */}
-      <div className="orb1 absolute pointer-events-none rounded-full"
+      {/* <div className="orb1 absolute pointer-events-none rounded-full"
         style={{ width:320, height:320, background:"radial-gradient(circle,rgba(0,0,0,0.05) 0%,transparent 70%)", top:-90, right:-90 }} />
       <div className="orb2 absolute pointer-events-none rounded-full"
         style={{ width:220, height:220, background:"radial-gradient(circle,rgba(0,0,0,0.04) 0%,transparent 70%)", bottom:"12%", left:-60 }} />
       <div className="orb3 absolute pointer-events-none rounded-full"
-        style={{ width:180, height:180, background:"radial-gradient(circle,rgba(0,0,0,0.04) 0%,transparent 70%)", top:"38%", right:"4%" }} />
+        style={{ width:180, height:180, background:"radial-gradient(circle,rgba(0,0,0,0.04) 0%,transparent 70%)", top:"38%", right:"4%" }} /> */}
 
       {/* ── HERO ── */}
       <section className="relative pt-24 pb-20 px-6 text-center max-w-4xl mx-auto">
@@ -398,7 +398,7 @@ export default function EsvayaStory() {
         </p>
 
         {/* Sound-wave divider */}
-        <div className="h4 flex items-end justify-center gap-1" style={{ height: 36 }}>
+        {/* <div className="h4 flex items-end justify-center gap-1" style={{ height: 36 }}>
           {[14,22,28,18,10,26,20,32,16,24].map((h, i) => (
             <div
               key={i}
@@ -406,7 +406,7 @@ export default function EsvayaStory() {
               style={{ width: 3.5, height: h, background: `hsl(0,0%,${55 + i * 4}%)` }}
             />
           ))}
-        </div>
+        </div> */}
       </section>
 
       {/* ── CHAPTERS ── */}
