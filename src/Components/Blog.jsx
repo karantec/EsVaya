@@ -215,7 +215,7 @@ export default function BlogCarousel() {
       const w = window.innerWidth
       if (w < 560) setCardsPerPage(1)
       else if (w < 900) setCardsPerPage(2)
-      else setCardsPerPage(4)
+      else setCardsPerPage(3)
     }
     update()
     window.addEventListener('resize', update)
