@@ -6,7 +6,7 @@ const LINES = [
   { text: '"By 3PM, you\'re not tired. You\'re completely depleted."', italic: true },
   { text: '"You\'re in bed. Your brain is still in the office."', italic: true },
   { text: 'Your nervous system was never given the signal that the day is actually over.', italic: false },
-  { text: 'We built Esvaya for that specific, unnamed feeling —\nthe one nobody is talking about, but everyone is feeling.', italic: false,  },
+  { text: 'We built Esvaya for that specific, unnamed feeling —\nthe one nobody is talking about, but everyone is experiencing.', italic: false,  },
 ]
 
 const TYPING_SPEED = 30
