@@ -2,15 +2,22 @@
 import { useState, useEffect, useRef } from 'react'
 
 const LINES = [
-  { text: '"It\'s Sunday evening feeling like Monday morning."', italic: true },
-  { text: '"By 3PM, you\'re not tired. You\'re completely depleted."', italic: true },
-  { text: '"You\'re in bed. Your brain is still in the office."', italic: true },
-  { text: 'Your nervous system was never given the signal that the day is actually over.', italic: false },
-  { text: 'We built Esvaya for that specific, unnamed feeling —\nthe one nobody is talking about, but everyone is experiencing.', italic: false,  },
+  {
+    text: '"Sunday evening that already feels like Monday morning. By 3 PM, you are not tired but completely depleted. You\'re in bed but your mind is still in the office."',
+    italic: true,
+  },
+  {
+    text: 'Your nervous system was never given the signal that the day is actually over.',
+    italic: false,
+  },
+  {
+    text: 'We built Esvaya for that specific, unnamed feeling —\nthe one nobody is talking about, but everyone is experiencing.',
+    italic: false,
+  },
 ]
 
-const TYPING_SPEED = 60
-const GAP_BETWEEN = 3000
+const TYPING_SPEED = 40
+const GAP_BETWEEN = 2500
 
 export default function TypewriterSection() {
   const [visibleLines, setVisibleLines] = useState([])
@@ -62,23 +69,20 @@ export default function TypewriterSection() {
 
   const isActive = (index) => typingLine === index || visibleLines.includes(index)
 
-  // All colors tuned to the warm cream/linen palette
-  const lineColors = [
-    '#5a5248',   // line 0 — warm dark taupe (italic quotes)
-    '#6b6158',   // line 1 — slightly warmer taupe
-    '#7a7068',   // line 2 — muted mid taupe
-    '#2c2825',   // line 3 — deep warm brown (bold statement)
-    '#9e8c6e',   // line 4 — warm muted gold/sand accent
+  const lineStyles = [
+    { color: '#5a5248', fontSize: 'clamp(16px, 1.8vw, 22px)', fontWeight: 400 }, // line 0 — italic quote
+    { color: '#2c2825', fontSize: 'clamp(18px, 2vw, 26px)',   fontWeight: 700 }, // line 1 — nervous system (smaller, single line)
+    { color: '#2c2825', fontSize: 'clamp(18px, 2vw, 26px)',   fontWeight: 700 }, // line 2 — We built Esvaya (black, same size)
   ]
 
-  const cursorColors = ['#9e8c6e', '#9e8c6e', '#9e8c6e', '#2c2825', '#9e8c6e']
+  const cursorColors = ['#9e8c6e', '#2c2825', '#2c2825']
 
   return (
     <section
       ref={sectionRef}
       className="relative flex items-center justify-center px-6 md:px-16 py-24 overflow-hidden"
       style={{
-        background: '#f0ede8', // warm linen — matches the screenshot exactly
+        background: '#f0ede8',
         fontFamily: '"Playfair Display", Georgia, serif',
         minHeight: '70vh',
       }}
@@ -89,6 +93,7 @@ export default function TypewriterSection() {
           const active = isActive(i)
           const typing = typingLine === i
           const done = visibleLines.includes(i)
+          const style = lineStyles[i]
 
           return (
             <div
@@ -101,21 +106,15 @@ export default function TypewriterSection() {
                   className={`leading-snug ${line.italic ? 'italic' : 'not-italic'}`}
                   style={{
                     fontFamily: '"Playfair Display", Georgia, serif',
-                    fontSize: line.accent
-                      ? 'clamp(13px, 1.3vw, 15px)'
-                      : i <= 2
-                      ? 'clamp(18px, 2.2vw, 26px)'
-                      : 'clamp(22px, 2.8vw, 34px)',
-                    fontWeight: i <= 2 ? 400 : 700,
-                    color: lineColors[i],
-                    letterSpacing: i === 4 ? '0.02em' : '-0.01em',
-                    whiteSpace: i === 4 ? 'pre-line' : 'normal',
+                    fontSize: style.fontSize,
+                    fontWeight: style.fontWeight,
+                    color: style.color,
+                    letterSpacing: '-0.01em',
+                    whiteSpace: i === 2 ? 'pre-line' : 'normal',
                     transition: 'color 0.5s ease',
                   }}
                 >
                   {displayed}
-
-                  {/* Blinking cursor */}
                   {typing && (
                     <span
                       className="inline-block align-middle ml-0.5"
@@ -132,8 +131,7 @@ export default function TypewriterSection() {
                 </p>
               )}
 
-              {/* Divider after line 3 */}
-              {done && i === 3 && (
+              {done && i === 1 && (
                 <span
                   className="block mt-6 mx-auto h-px"
                   style={{

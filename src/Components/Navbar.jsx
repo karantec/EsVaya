@@ -72,25 +72,18 @@ function Navbar() {
           {/* Logo */}
           <div className="flex flex-col">
             <span className="font-serif text-white tracking-[0.3em] text-sm leading-none">ESVAYA</span>
-            <span
-              className="tracking-[0.18em] text-[7px] leading-none mt-1 transition-all duration-500"
-              style={{ color: scrolled ? "rgba(255,255,255,0.3)" : "rgba(255,255,255,0.2)" }}
-            >
-              SENSORY WELLNESS HOUSE
-            </span>
+            
           </div>
 
           {/* Desktop links */}
-          <div className="hidden md:flex items-center gap-10">
-            {["PRODUCTS", "OUR STORY"].map((l) => (
-              <a key={l} href="#" className="nav-link">{l}</a>
-            ))}
+       <div className="hidden md:flex items-center gap-10 font-bold">
+  {["PRODUCTS", "OUR STORY"].map((l) => (
+    <a key={l} href="#" className="nav-link text-white font-bold text-2xl lg:text-3xl xl:text-4xl">
+      {l}
+    </a>
+  ))}
 
             {/* Live indicator */}
-            <div className="flex items-center gap-2 px-3 py-1.5 border border-white/10 rounded-full">
-              <span className="live-dot" />
-              <span className="text-[8px] tracking-[0.18em] text-white/40">150 KITS LEFT</span>
-            </div>
 
             {/* Grid icon */}
             <button
@@ -110,7 +103,7 @@ function Navbar() {
           <div className="flex md:hidden items-center gap-4">
             <div className="flex items-center gap-1.5">
               <span className="live-dot" />
-              <span className="text-[7px] tracking-widest text-white/35">150 LEFT</span>
+             
             </div>
             {/* Hamburger */}
             <button
@@ -148,15 +141,12 @@ function Navbar() {
                 key={l}
                 href="#"
                 onClick={() => setMenuOpen(false)}
-                className="text-[11px] tracking-[0.25em] text-white/55 hover:text-white transition-colors py-1 border-b border-white/5 pb-4"
+                className="text-[14px] tracking-[0.25em] text-white/55 hover:text-white transition-colors py-1 border-b border-white/5 pb-4"
               >
                 {l}
               </a>
             ))}
-            <div className="flex items-center gap-2 pt-1">
-              <span className="live-dot" />
-              <span className="text-[8px] tracking-[0.18em] text-white/35">ONLY 150 FOUNDER KITS AVAILABLE</span>
-            </div>
+            
           </div>
         )}
       </nav>
@@ -200,7 +190,7 @@ function Hero() {
         {/* Eyebrow */}
         <div className="hero-sub flex items-center justify-center gap-3 mb-7">
           <span className="h-px w-10 bg-white/20" />
-          <span className="text-[8px] tracking-[0.32em] text-white/40 uppercase">Sensory Wellness House</span>
+          <span className="text-[12px] tracking-[0.32em] text-black font-bold uppercase">Sensory Wellness House</span>
           <span className="h-px w-10 bg-white/20" />
         </div>
 
@@ -208,7 +198,7 @@ function Hero() {
         <h1 className="hero-title font-serif text-[clamp(2.6rem,7vw,5.5rem)]  text-white  leading-[1.12]"
           style={{ fontStyle: "italic" }}>
           Experience the Stillness
-          <br />in the Chaos
+          in the Chaos
         </h1>
 
         {/* Divider line */}
@@ -216,10 +206,8 @@ function Hero() {
           <span className="hero-line block h-px bg-white/25" />
         </div>
 
-        {/* Sub label */}
-        <p className="hero-sub2 text-[8.5px] tracking-[0.32em] text-white/35 uppercase">
-          Focus Roll-On &nbsp;·&nbsp; Linen &nbsp;·&nbsp; Unwind Mist
-        </p>
+   
+        
       </div>
 
       {/* Scroll indicator */}

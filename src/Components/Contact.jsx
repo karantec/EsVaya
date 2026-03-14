@@ -15,12 +15,12 @@ const values = [
   {
     num: '03',
     title: 'SOIL TO SENSE.',
-    desc: 'We know where every drop comes from. Jammu. Rajasthan. Himachal Pradesh. UP. India, entirely.',
+    desc: 'We know where every drop comes from. Jammu. Rajasthan. Himachal Pradesh. UP. India, entirely.Every drop is rooted in Indian soil – grown, distilled, and carried here',
   },
   {
     num: '04',
     title: 'NO DEPENDENCY. EVER.',
-    desc: "The goal is to make ourselves unnecessary. By Day 30 your body signals itself. That's the whole point.",
+    desc: "The goal is to make ourselves unnecessary. By Day 30, your body signals itself.",
   },
 ]
 
@@ -115,8 +115,7 @@ export default function GetInTouch() {
                 <em className="italic">Every one.</em>
               </h2>
               <p className="text-gray-400 text-sm leading-relaxed tracking-wide" style={{ maxWidth: 380 }}>
-                Whether it's a question about your ritual, a wholesale inquiry, or just
-                something you felt — we're here. No ticketing system. No chatbot.
+                Whether it’s a question about the ritual or just something you felt – we’re here. No ticketing system. No chatbot
               </p>
             </div>
 
@@ -299,12 +298,7 @@ export default function GetInTouch() {
               className="mt-10 p-8 border border-gray-200 flex flex-col gap-4"
               style={{ background: 'rgba(255,255,255,0.6)' }}
             >
-              <p
-                className="italic text-gray-700 leading-relaxed"
-                style={{ fontFamily: 'Playfair Display, serif', fontSize: 16 }}
-              >
-                "Not sure where to start? Tell us how your body feels after 3PM."
-              </p>
+             
               <a
                 href="mailto:hello@esvaya.com"
                 className="self-start uppercase tracking-widest text-xs px-6 py-3 bg-gray-900 text-white hover:bg-gray-700 transition-colors duration-300"

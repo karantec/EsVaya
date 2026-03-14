@@ -412,7 +412,7 @@ export default function EsvayaStory() {
       {/* ── CHAPTERS ── */}
       <section className="max-w-4xl mx-auto px-6 pb-32">
         {chapters.map((ch, i) => <ChapterCard key={i} chapter={ch} index={i} />)}
-        <CtaBlock />
+        {/* <CtaBlock /> */}
       </section>
     </div>
   );
