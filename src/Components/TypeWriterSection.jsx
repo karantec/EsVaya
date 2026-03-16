@@ -35,7 +35,7 @@ export default function StressorsSection() {
           observer.disconnect()
         }
       },
-      { threshold: 0.2 }
+      { threshold: 0.15 }
     )
 
     observer.observe(sectionRef.current)
@@ -45,8 +45,7 @@ export default function StressorsSection() {
   return (
     <section
       ref={sectionRef}
-      className="bg-white px-12 pt-[72px] pb-20 box-border"
-      style={{ fontFamily: '"Playfair Display", Georgia, serif' }}
+      className="bg-white px-4 sm:px-8 lg:px-12 pt-10 sm:pt-14 lg:pt-[72px] pb-12 sm:pb-16 lg:pb-20 box-border font-serif"
     >
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap');
@@ -73,40 +72,31 @@ export default function StressorsSection() {
         }
       `}</style>
 
-      {/* Headline — center aligned */}
-      <p
-        className="text-[28px] font-normal text-[#2c2825] leading-[1.45] tracking-[-0.01em] max-w-[800px] mx-auto mb-16 text-center"
-        style={{ fontFamily: '"Playfair Display", Georgia, serif' }}
-      >
+      {/* Headline */}
+      <p className="text-xl sm:text-2xl lg:text-[28px] font-normal text-[#2c2825] leading-[1.45] tracking-[-0.01em] max-w-[800px] mx-auto mb-10 sm:mb-12 lg:mb-16 text-center font-serif">
         Your nervous system is under constant, unrelenting pressure.
       </p>
 
       {/* Grid */}
-      <div className="grid grid-cols-3 border-t border-[#c4b9a8]">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 border-t border-[#c4b9a8]">
         {STRESSORS.map((item, i) => (
           <div
             key={i}
-            className={`esv-item relative text-left
-              ${i === 0 ? 'pt-10 pr-8 pb-10 pl-0' : ''}
-              ${i === 1 ? 'px-8 py-10 border-x border-[#c4b9a8]' : ''}
-              ${i === 2 ? 'pt-10 pl-8 pb-10 pr-0' : ''}
+            className={`esv-item relative
+              ${i === 0 ? 'pt-8 pb-8 sm:pr-6 lg:pr-8' : ''}
+              ${i === 1 ? 'pt-8 pb-8 sm:pl-6 lg:pl-8 sm:border-l border-[#c4b9a8] border-t sm:border-t-0 lg:border-r lg:pr-8' : ''}
+              ${i === 2 ? 'pt-8 pb-8 sm:col-span-2 sm:border-t lg:col-span-1 lg:border-t-0 lg:pl-8 lg:border-l border-[#c4b9a8]' : ''}
             `}
           >
             <div className="esv-item-bg" />
 
             {/* Number */}
-            <span
-              className="text-[13px] font-light tracking-[0.2em] text-[#b0a492] block mb-5"
-              style={{ fontFamily: '"Cormorant Garamond", Georgia, serif' }}
-            >
+            <span className="text-[13px] font-light tracking-[0.2em] text-[#b0a492] block mb-5" style={{ fontFamily: '"Cormorant Garamond", Georgia, serif' }}>
               {item.number}
             </span>
 
             {/* Title */}
-            <p
-              className="text-[clamp(24px,4vw,30px)] font-bold text-[#2c2825] mb-4"
-              style={{ fontFamily: '"Playfair Display", Georgia, serif' }}
-            >
+            <p className="text-2xl sm:text-[26px] lg:text-[30px] font-bold text-[#2c2825] mb-4 leading-tight font-serif">
               {item.title.map((line, j) => (
                 <span key={j}>
                   {line}
@@ -116,10 +106,7 @@ export default function StressorsSection() {
             </p>
 
             {/* Description */}
-            <p
-              className="text-[24px] font-bold text-black leading-[1.7] m-0 italic"
-              style={{ fontFamily: '"Cormorant Garamond", Georgia, serif' }}
-            >
+            <p className="text-xl sm:text-[22px] lg:text-[24px] font-bold text-black leading-[1.7] m-0 italic" style={{ fontFamily: '"Cormorant Garamond", Georgia, serif' }}>
               {item.desc}
             </p>
 
@@ -130,15 +117,9 @@ export default function StressorsSection() {
       </div>
 
       {/* Footer */}
-      <div className="mt-14 pt-8 border-t border-[#c4b9a8] flex items-center justify-center">
-        <div
-          className="flex-1 h-px mr-6"
-          style={{ background: 'linear-gradient(to left, transparent, #c4b9a8)' }}
-        />
-        <div
-          className="flex-1 h-px ml-6"
-          style={{ background: 'linear-gradient(to right, transparent, #c4b9a8)' }}
-        />
+      <div className="mt-10 sm:mt-12 lg:mt-14 pt-8 border-t border-[#c4b9a8] flex items-center justify-center">
+        <div className="flex-1 h-px mr-6 bg-gradient-to-l from-[#c4b9a8] to-transparent" />
+        <div className="flex-1 h-px ml-6 bg-gradient-to-r from-[#c4b9a8] to-transparent" />
       </div>
     </section>
   )
