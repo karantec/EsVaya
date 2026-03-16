@@ -4,9 +4,9 @@ const products = [
   {
     time: "MORNING",
     italic: "Focus",
-    rest: " Roll-On",
+    rest: " Ritual",
     steps: [
-      "Three seconds on wrists or temples",
+      "Apply on wrist or temple",
       "One slow inhale through the nose",
       "Hold the breath for four counts",
     ],
@@ -15,7 +15,7 @@ const products = [
   {
     time: "EVENING",
     italic: "Unwind",
-    rest: " Night Mist",
+    rest: " Night Ritual",
     steps: [
       "Two sprays on your linen or pillow",
       "Five slow breaths through your nose",
@@ -26,13 +26,13 @@ const products = [
 ];
 
 const badges = [
-  { icon: "✓", label: "LAB" },
-  { icon: "☺", label: "PLANT" },
-  { icon: "⊞", label: "NON" },
-  { icon: "♦", label: "NATURAL" },
-  { icon: "◎", label: "CRUELTY" },
-  { icon: "≡", label: "PARABEN" },
-  { icon: "◉", label: "INDIA" },
+  { icon: "✓", label: "LAB TESTED" },
+  { icon: "☺", label: "NON TOXIC" },
+  { icon: "⊞", label: "CRUELTY FREE." },
+  { icon: "♦", label: "NATURAL INGREDIENTS" },
+  { icon: "◎", label: "PLANT BASED" },
+  { icon: "≡", label: "INDIAN ORIGIN" },
+  { icon: "◉", label: "PARABEN FREE" },
 ];
 
 function ProductCard({ product }) {
@@ -40,12 +40,12 @@ function ProductCard({ product }) {
     <div className="flex gap-10 items-start">
       <div className="w-[200px] flex-shrink-0 aspect-[3/4] bg-[#111] rounded-sm border border-white/10" />
       <div className="flex-1 pt-1">
-        <p className="text-[10px] tracking-[0.25em] text-white/30 mb-4 flex items-center gap-3">
+        <p className="text-[12px] tracking-[0.25em] text-white mb-4 flex items-center gap-3">
           {product.time}
           <span className="inline-block w-12 h-px bg-white/15" />
         </p>
         <h2 className="font-serif text-4xl leading-tight text-white mb-6">
-          <em style={{ fontStyle: "italic" }} className="text-white/70">
+          <em style={{ fontStyle: "italic" }} className="text-white font-bold">
             {product.italic}
           </em>
           {product.rest}
@@ -53,12 +53,12 @@ function ProductCard({ product }) {
         <div className="space-y-0">
           {product.steps.map((step, i) => (
             <div key={i} className="flex gap-4 items-start py-3 border-b border-white/8">
-              <span className="text-[10px] text-white/20 mt-0.5 w-3">{i + 1}.</span>
-              <p className="text-white/45 text-sm leading-relaxed">{step}</p>
+              {/* <span className="text-[10px] text-white/20 mt-0.5 w-3">{i + 1}.</span> */}
+              <p className="text-white text-md leading-relaxed">{step}</p>
             </div>
           ))}
         </div>
-        <p className="mt-6 text-white/55 text-sm italic leading-relaxed">{product.signal}</p>
+        <p className="mt-6 text-white  text-md italic leading-relaxed">{product.signal}</p>
       </div>
     </div>
   );
@@ -66,22 +66,20 @@ function ProductCard({ product }) {
 
 function ArchitectureSection() {
   return (
-    <section className="py-32 px-10 text-center max-w-2xl mx-auto">
+    <section className=" px-10 text-center max-w-3xl mx-auto">
       <div className="w-px h-16 bg-white/10 mx-auto mb-12" />
-      <p className="text-[10px] tracking-[0.25em] text-white/25 mb-8">THE ARCHITECTURE</p>
-      <h2 className="font-serif text-5xl md:text-6xl leading-tight text-white mb-8">
-        Most things ask for{" "}
-        <em className="text-white/60" style={{ fontStyle: "italic" }}>21 days.</em>
-        <br />
-        We ask for 30.
+      <p className="text-[28px] tracking-[0.25em] font-bold text-white mb-8">THE ARCHITECTURE</p>
+      <h2 className="font-serif text-4xl md:text-6xl leading-tight text-white mb-8 mb-6">
+        Two Products. <br/>30 days Ritual. <br/>One System{" "}
+        
       </h2>
-      <p className="text-white/35 text-base leading-relaxed mb-6">
-        Because that's how long it takes for the same scent, in the same moment,
-        repeated — to stop being something you do and become something your body expects.
+      <p className="text-white text-2xl mt-8 py-10 font-bold leading-relaxed ">
+                       Exclusive Access to Founder’s Edition
+                              The Esvaya Ritual Kit
+                                     
+
       </p>
-      <p className="text-white/20 text-sm leading-relaxed">
-        By Day 30, your nervous system doesn't wait for you to remember. It already knows.
-      </p>
+      
     </section>
   );
 }
@@ -152,7 +150,7 @@ function WaitlistButton() {
         .ev-marching-border > * { position: relative; z-index: 2; }
       `}</style>
 
-      <div className="flex flex-col items-center gap-3">
+      <div className="flex flex-col items-center gap-3 mt-4">
         <button
           ref={btnRef}
           onClick={handleClick}
@@ -223,29 +221,19 @@ function RitualKitSection() {
   return (
     <section className="py-20 px-10">
       <div className="max-w-2xl mx-auto">
-        <div className="border-t border-white/8 pt-12 mb-12 text-center">
-          <p className="font-serif text-base italic text-white/30 leading-loose">
-            Two products. One system. Thirty days.
-            <br />
-            Designed to run out at exactly the same time.
-            <br />
-            Because the ritual doesn't end — it just renews.
-          </p>
-        </div>
+       
         <div className="border-t border-white/8 pt-12 text-center">
-          <p className="text-[10px] tracking-[0.25em] text-white/35 mb-4">
+          <p className="text-[15px] tracking-[0.25em] text-white mb-4">
             FOUNDER'S EDITION · 150 KITS ONLY
           </p>
           <h2 className="font-serif text-4xl md:text-5xl text-white mb-3">The Esvaya Ritual Kit</h2>
-          <p className="text-[9px] tracking-[0.22em] text-white/20 mb-8">
-            FOCUS ROLL-ON + UNWIND NIGHT MIST · MATTE BLACK · 30 DAYS
-          </p>
-          <div className="mb-8">
-            <span className="font-serif text-5xl text-white">₹1,199</span>
-            <span className="text-white/22 text-xs tracking-widest ml-3">
+         
+          <div className="mb-8 justify-center ml-15">
+            <span className="font-serif text-5xl text-white text-center ">₹1,199</span>
+          </div>
+           <span className="text-white text-[15px] tracking-widest ml-3">
               INCL. ALL TAXES · FREE SHIPPING
             </span>
-          </div>
           <WaitlistButton />
         </div>
       </div>
@@ -256,13 +244,13 @@ function RitualKitSection() {
 function BadgesSection() {
   return (
     <section className="py-14 px-10 bg-white">
-      <div className="max-w-3xl mx-auto flex items-center justify-center gap-8 flex-wrap">
+      <div className="max-w-8xl mx-auto flex items-center justify-center gap-24 flex-wrap">
         {badges.map((b) => (
-          <div key={b.label} className="flex flex-col items-center gap-2">
+          <div key={b.label} className="flex flex-col items-center gap-4">
             <div className="w-12 h-12 rounded-full border border-black/20 flex items-center justify-center text-black/60 text-lg hover:border-black/60 hover:text-black transition-colors duration-200">
               {b.icon}
             </div>
-            <p className="text-[8px] tracking-[0.2em] text-black/40">{b.label}</p>
+            <p className="text-[15px] tracking-[0.2em] text-black font-bold">{b.label}</p>
           </div>
         ))}
       </div>
@@ -274,10 +262,10 @@ export default function EsvayaProductSection() {
   return (
     <div className="bg-black min-h-screen font-sans">
       <section className="pt-16 pb-16 px-10 text-center max-w-4xl mx-auto">
-        <p className="font-serif text-xl md:text-2xl text-white/40 italic leading-relaxed">
-          We took those ingredients and built something you can use in two minutes. Every single day.
-          Until your nervous system learns to do it without you.
+        <p className="font-serif text-xl md:text-2xl text-white italic leading-relaxed">
+          We heard you, and built something you can use in two minute. Integrated in your daily routine to help you in deep sleep and strong focus
         </p>
+        <ArchitectureSection />
       </section>
 
       <section className="px-10 pb-16 max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-14">
@@ -286,7 +274,7 @@ export default function EsvayaProductSection() {
         ))}
       </section>
 
-      <ArchitectureSection />
+      
       <RitualKitSection />
       <BadgesSection />
     </div>

@@ -143,13 +143,13 @@ function BlogCard({ post, index }) {
 
         <div className="flex items-center justify-between">
           <span
-            className="text-[11px] font-medium tracking-[0.14em] uppercase px-3 py-1.5 rounded-full bg-white/[0.06] text-white/35 border border-white/[0.07]"
+            className="text-[11px] font-medium tracking-[0.14em] uppercase px-3 py-1.5 rounded-full bg-white/[0.06] text-white border border-white/[0.07]"
             style={{ fontFamily: 'DM Sans, sans-serif' }}
           >
             {post.tag}
           </span>
           <span
-            className="text-[12px] text-white/22"
+            className="text-[12px] text-white"
             style={{ fontFamily: 'DM Sans, sans-serif' }}
           >
             {post.read} read
@@ -157,14 +157,14 @@ function BlogCard({ post, index }) {
         </div>
 
         <h3
-          className="text-[20px] font-semibold text-white/88 leading-[1.35] tracking-[-0.01em] group-hover:text-white transition-colors duration-300"
+          className="text-[20px] font-semibold text-white leading-[1.35] tracking-[-0.01em] group-hover:text-white transition-colors duration-300"
           style={{ fontFamily: 'Playfair Display, Georgia, serif' }}
         >
           {post.title}
         </h3>
 
         <p
-          className="text-[14px] italic text-white/30 leading-[1.75] flex-1 group-hover:text-white/50 transition-colors duration-300"
+          className="text-[14px] italic text-white leading-[1.75] flex-1 group-hover:text-white/50 transition-colors duration-300"
           style={{ fontFamily: 'Playfair Display, Georgia, serif' }}
         >
           {post.excerpt}
@@ -172,14 +172,14 @@ function BlogCard({ post, index }) {
 
         <div className="flex items-center justify-between pt-4 mt-2 border-t border-white/[0.06]">
           <span
-            className="text-[12px] text-white/22"
+            className="text-[12px] text-white"
             style={{ fontFamily: 'DM Sans, sans-serif' }}
           >
             {post.date}
           </span>
           <div className="
             w-[34px] h-[34px] rounded-full flex items-center justify-center
-            border border-white/10 bg-transparent
+            border border-white bg-transparent
             transition-all duration-300
             group-hover:bg-white group-hover:border-white
           ">
@@ -377,8 +377,7 @@ export default function BlogCarousel() {
         <button
           className="
             px-6 py-2.5 rounded-full
-            border border-white/10 text-white/38 text-[12px]
-            hover:border-white/30 hover:text-white/70
+            border border-white/10 text-white text-[12px]
             transition-all duration-300
           "
           style={{ fontFamily: 'DM Sans, sans-serif' }}

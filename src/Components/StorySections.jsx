@@ -71,11 +71,7 @@ function RejectionCard({ item, i, inView }) {
 
 /* ── Chapter data ── */
 const chapters = [
-  {
-    num: "", emoji: "🌿", title: "The Problem",
-    body: "After a decade in high-pressure corporate environments — back to back meetings, calls that spill into evenings, the quiet normalisation of depletion — I noticed something nobody was talking about openly: the workday was ending, but the nervous system wasn't getting the memo.",
-    quote: "I wasn't burnt out. Burnt out sounds dramatic. This was quieter — the kind of exhaustion where you're performing okay at everything and feeling nothing about any of it.",
-  },
+  
   {
     num: "", emoji: "🔍", title: "The Search",
     body: "I tried everything the market offered. Nothing worked — not because I was broken, but because they were built for a different problem.",
@@ -90,8 +86,8 @@ const chapters = [
   },
   {
     num: "", emoji: "✨", title: "The Discovery",
-    body: "The olfactory system is the only one of your five senses with a direct pathway to the limbic brain — the part that governs emotion, memory, and stress response. Every other sense has to pass through the thalamus first. Scent just arrives.",
-    highlight: "Scent is the only sense that talks directly to your emotions — no middleman.",
+    body: "The olfactory system is the only sense with a direct pathway to the emotional brain. Essential oil blends, chosen for chemistry not for fragrance, applied consistently, could become the signal for nervous system. ESVAYA was built around that one insight. Natural. Functional. Two minutes. Every day.",
+    
   },
 ];
 
@@ -366,47 +362,43 @@ export default function EsvayaStory() {
           style={{ background: "#111", border: "1.5px solid #333" }}
         >
           <span className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full rounded-full bg-white"
-              style={{ animation:"pulseRing 1.5s ease-out infinite", opacity: 0.6 }} />
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-white" />
+            
           </span>
           <span
-            className="text-xs font-bold tracking-[0.25em] uppercase"
+            className="text-5xl  font-bold tracking-[0.25em] "
             style={{ color: "#fff", fontFamily: "'DM Sans', sans-serif" }}
           >
-            Our Story
+            Origin of  Esvaya
           </span>
         </div>
 
         {/* Headline */}
         <h1 className="h2 mb-4 leading-[1.05]" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>
-          <span className="block text-5xl md:text-7xl font-black" style={{ color: "#1a1a2e" }}>
+          <span className="block text-5xl md:text-7xl font-black" style={{ color: "#1a1a2e" ,marginRight:'1rem' }}>
             Built from experience.
           </span>
-          <span className="block text-5xl md:text-7xl font-black italic shimmer-mono mt-1">
-            Both kinds.
-          </span>
+          
         </h1>
 
         {/* Subtext */}
-        <p
-          className="h3 text-lg md:text-xl text-neutral-500 max-w-lg mx-auto leading-relaxed mt-6 mb-10"
-          style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 400 }}
-        >
-          A decade navigating urban India's corporate grind. Twelve years mastering essential oil
-          formulation. Esvaya is what happens when those two lives meet.
-        </p>
+       <p
+  className="text-lg md:text-xl text-neutral-500 leading-8 mt-6 mb-10 text-justify"
+  style={{
+    fontFamily: "'DM Sans', sans-serif",
+    fontWeight: 400,
+    wordSpacing: "6px"
+  }}
+>
+  It started with a feeling that most urban achievers know but nobody names.
+  <br />
+  Not burnout – burnout sounds dramatic but something quieter. The 3AM wake-up
+  with a mind focused on next morning meeting. The 3 PM crash that no amount of
+  coffee could fix or the anxiety that never allowed to settle. The morning
+  alarm that felt like an accusation, because cortisol level was permanently
+  elevated.
+</p>
 
-        {/* Sound-wave divider */}
-        {/* <div className="h4 flex items-end justify-center gap-1" style={{ height: 36 }}>
-          {[14,22,28,18,10,26,20,32,16,24].map((h, i) => (
-            <div
-              key={i}
-              className="wave-bar rounded-full"
-              style={{ width: 3.5, height: h, background: `hsl(0,0%,${55 + i * 4}%)` }}
-            />
-          ))}
-        </div> */}
+       
       </section>
 
       {/* ── CHAPTERS ── */}

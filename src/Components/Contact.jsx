@@ -15,7 +15,7 @@ const values = [
   {
     num: '03',
     title: 'SOIL TO SENSE.',
-    desc: 'We know where every drop comes from. Jammu. Rajasthan. Himachal Pradesh. UP. India, entirely.Every drop is rooted in Indian soil – grown, distilled, and carried here',
+    desc: 'Every drop is rooted in Indian soil – grown, distilled, and carried here',
   },
   {
     num: '04',
@@ -33,7 +33,7 @@ const contactInfo = [
       </svg>
     ),
     label: 'Email',
-    value: 'hello@esvaya.com',
+    value: 'esvayasocial@esvaya.com',
     note: 'We reply within 24 hours',
     href: 'mailto:hello@esvaya.com',
   },
@@ -88,14 +88,14 @@ export default function GetInTouch() {
   return (
     <section
       className="px-6 md:px-16 py-24"
-      style={{ background: '#f5f3f0', fontFamily: 'Jost, sans-serif' }}
+      style={{ background: '#FFFFFF', fontFamily: 'Jost, sans-serif' }}
     >
       <div className="max-w-6xl mx-auto">
 
         {/* Top label */}
         <p
           className="uppercase text-gray-400 tracking-widest mb-16"
-          style={{ fontSize: 9, letterSpacing: '0.35em' }}
+          style={{ fontSize: 20, letterSpacing: '0.35em' }}
         >
           Get In Touch
         </p>
@@ -114,7 +114,7 @@ export default function GetInTouch() {
                 We read every message.<br />
                 <em className="italic">Every one.</em>
               </h2>
-              <p className="text-gray-400 text-sm leading-relaxed tracking-wide" style={{ maxWidth: 380 }}>
+              <p className="text-gray-400 text-md leading-relaxed tracking-wide" style={{ maxWidth: 380 }}>
                 Whether it’s a question about the ritual or just something you felt – we’re here. No ticketing system. No chatbot
               </p>
             </div>
@@ -127,7 +127,7 @@ export default function GetInTouch() {
               >
                 <p
                   className="italic text-gray-600 leading-relaxed"
-                  style={{ fontFamily: 'Playfair Display, serif', fontSize: 18 }}
+                  style={{ fontFamily: 'Playfair Display, serif', fontSize: 24 }}
                 >
                   We received your message.<br />We'll be in touch soon.
                 </p>
@@ -139,7 +139,7 @@ export default function GetInTouch() {
                   <div className="flex flex-col gap-1">
                     <label
                       className="uppercase text-gray-400 tracking-widest"
-                      style={{ fontSize: 8 }}
+                      style={{ fontSize: 15 }}
                     >
                       Your Name
                     </label>
@@ -157,7 +157,7 @@ export default function GetInTouch() {
                   <div className="flex flex-col gap-1">
                     <label
                       className="uppercase text-gray-400 tracking-widest"
-                      style={{ fontSize: 8 }}
+                      style={{ fontSize: 15 }}
                     >
                       Email
                     </label>
@@ -178,7 +178,7 @@ export default function GetInTouch() {
                 <div className="flex flex-col gap-1">
                   <label
                     className="uppercase text-gray-400 tracking-widest"
-                    style={{ fontSize: 8 }}
+                    style={{ fontSize: 15 }}
                   >
                     Your Message
                   </label>
@@ -224,7 +224,7 @@ export default function GetInTouch() {
                   <div className="flex flex-col gap-0.5">
                     <span
                       className="uppercase text-gray-400 tracking-widest"
-                      style={{ fontSize: 8 }}
+                      style={{ fontSize: 15 }}
                     >
                       {label}
                     </span>
@@ -232,12 +232,12 @@ export default function GetInTouch() {
                       <a
                         href={href}
                         className="text-gray-800 hover:text-gray-500 transition-colors duration-200"
-                        style={{ fontFamily: 'Playfair Display, serif', fontSize: 15 }}
+                        style={{ fontFamily: 'Playfair Display, serif', fontSize: 20 }}
                       >
                         {value}
                       </a>
                     ) : (
-                      <span style={{ fontFamily: 'Playfair Display, serif', fontSize: 15, color: '#1a1a1a' }}>
+                      <span style={{ fontFamily: 'Playfair Display, serif', fontSize: 20, color: '#1a1a1a' }}>
                         {value}
                       </span>
                     )}
@@ -281,11 +281,11 @@ export default function GetInTouch() {
                   <div className="flex flex-col gap-2">
                     <h4
                       className="text-gray-700 font-medium tracking-wider transition-colors duration-300 group-hover:text-gray-900"
-                      style={{ fontSize: 10, letterSpacing: '0.18em' }}
+                      style={{ fontSize: 15, letterSpacing: '0.18em' }}
                     >
                       {title}
                     </h4>
-                    <p className="text-gray-400 text-sm leading-relaxed tracking-wide">
+                    <p className="text-gray-400 text-md leading-relaxed tracking-wide">
                       {desc}
                     </p>
                   </div>
@@ -294,19 +294,7 @@ export default function GetInTouch() {
             </div>
 
             {/* CTA card */}
-            <div
-              className="mt-10 p-8 border border-gray-200 flex flex-col gap-4"
-              style={{ background: 'rgba(255,255,255,0.6)' }}
-            >
-             
-              <a
-                href="mailto:hello@esvaya.com"
-                className="self-start uppercase tracking-widest text-xs px-6 py-3 bg-gray-900 text-white hover:bg-gray-700 transition-colors duration-300"
-                style={{ fontFamily: 'Jost, sans-serif', letterSpacing: '0.2em' }}
-              >
-                Write to Us →
-              </a>
-            </div>
+           
           </div>
 
         </div>

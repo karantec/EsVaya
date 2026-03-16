@@ -1,154 +1,145 @@
-// TypewriterSection.jsx
-import { useState, useEffect, useRef } from 'react'
+// StressorsSection.jsx
+import { useEffect, useRef } from 'react'
 
-const LINES = [
+const STRESSORS = [
   {
-    text: '"Sunday evening that already feels like Monday morning. By 3 PM, you are not tired but completely depleted. You\'re in bed but your mind is still in the office."',
-    italic: true,
+    number: '01',
+    title: ['Back-to-back', 'meetings &', 'constant alerts'],
+    desc: 'No pause between demands. The mind never gets to exhale.',
   },
   {
-    text: 'Your nervous system was never given the signal that the day is actually over.',
-    italic: false,
+    number: '02',
+    title: ['Productivity', 'loss & broken', 'sleep'],
+    desc: 'Exhausted but wired. Output drops while effort keeps climbing.',
   },
   {
-    text: 'We built Esvaya for that specific, unnamed feeling —\nthe one nobody is talking about, but everyone is experiencing.',
-    italic: false,
+    number: '03',
+    title: ['Cognitive', 'overload &', 'emotional fatigue'],
+    desc: 'The weight of too many thoughts — with nowhere left to put them.',
   },
 ]
 
-const TYPING_SPEED = 40
-const GAP_BETWEEN = 2500
-
-export default function TypewriterSection() {
-  const [visibleLines, setVisibleLines] = useState([])
-  const [typingLine, setTypingLine] = useState(null)
-  const [typedCount, setTypedCount] = useState(0)
+export default function StressorsSection() {
   const sectionRef = useRef(null)
-  const started = useRef(false)
 
   useEffect(() => {
+    const items = sectionRef.current?.querySelectorAll('.esv-item')
+    if (!items) return
+
     const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) startSequence() },
-      { threshold: 0.25 }
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          items.forEach((el, i) => {
+            setTimeout(() => el.classList.add('esv-item--visible'), i * 150)
+          })
+          observer.disconnect()
+        }
+      },
+      { threshold: 0.2 }
     )
-    if (sectionRef.current) observer.observe(sectionRef.current)
+
+    observer.observe(sectionRef.current)
     return () => observer.disconnect()
   }, [])
-
-  const startSequence = () => {
-    if (started.current) return
-    started.current = true
-    scheduleNext(0)
-  }
-
-  const scheduleNext = (index) => {
-    if (index >= LINES.length) return
-    setTimeout(() => {
-      setTypingLine(index)
-      setTypedCount(0)
-    }, index === 0 ? 400 : GAP_BETWEEN)
-  }
-
-  useEffect(() => {
-    if (typingLine === null) return
-    const text = LINES[typingLine].text
-    if (typedCount < text.length) {
-      const t = setTimeout(() => setTypedCount(c => c + 1), TYPING_SPEED)
-      return () => clearTimeout(t)
-    }
-    setVisibleLines(prev => [...prev, typingLine])
-    setTypingLine(null)
-    scheduleNext(typingLine + 1)
-  }, [typingLine, typedCount])
-
-  const getLineText = (index) => {
-    if (visibleLines.includes(index)) return LINES[index].text
-    if (typingLine === index) return LINES[index].text.slice(0, typedCount)
-    return null
-  }
-
-  const isActive = (index) => typingLine === index || visibleLines.includes(index)
-
-  const lineStyles = [
-    { color: '#5a5248', fontSize: 'clamp(16px, 1.8vw, 22px)', fontWeight: 400 }, // line 0 — italic quote
-    { color: '#2c2825', fontSize: 'clamp(18px, 2vw, 26px)',   fontWeight: 700 }, // line 1 — nervous system (smaller, single line)
-    { color: '#2c2825', fontSize: 'clamp(18px, 2vw, 26px)',   fontWeight: 700 }, // line 2 — We built Esvaya (black, same size)
-  ]
-
-  const cursorColors = ['#9e8c6e', '#2c2825', '#2c2825']
 
   return (
     <section
       ref={sectionRef}
-      className="relative flex items-center justify-center px-6 md:px-16 py-24 overflow-hidden"
-      style={{
-        background: '#f0ede8',
-        fontFamily: '"Playfair Display", Georgia, serif',
-        minHeight: '70vh',
-      }}
+      className="bg-white px-12 pt-[72px] pb-20 box-border"
+      style={{ fontFamily: '"Playfair Display", Georgia, serif' }}
     >
-      <div className="relative w-full max-w-2xl mx-auto flex flex-col items-center text-center gap-8 z-10">
-        {LINES.map((line, i) => {
-          const displayed = getLineText(i)
-          const active = isActive(i)
-          const typing = typingLine === i
-          const done = visibleLines.includes(i)
-          const style = lineStyles[i]
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap');
 
-          return (
-            <div
-              key={i}
-              className="w-full transition-opacity duration-500"
-              style={{ opacity: active ? 1 : 0, minHeight: '1.2em' }}
+        .esv-item {
+          opacity: 0;
+          transform: translateY(18px);
+          transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .esv-item--visible {
+          opacity: 1;
+          transform: translateY(0);
+        }
+        .esv-item-bg {
+          position: absolute;
+          inset: 0;
+          background: rgba(196, 185, 168, 0.12);
+          opacity: 0;
+          transition: opacity 0.35s ease;
+          pointer-events: none;
+        }
+        .esv-item:hover .esv-item-bg {
+          opacity: 1;
+        }
+      `}</style>
+
+      {/* Headline — center aligned */}
+      <p
+        className="text-[28px] font-normal text-[#2c2825] leading-[1.45] tracking-[-0.01em] max-w-[800px] mx-auto mb-16 text-center"
+        style={{ fontFamily: '"Playfair Display", Georgia, serif' }}
+      >
+        Your nervous system is under constant, unrelenting pressure.
+      </p>
+
+      {/* Grid */}
+      <div className="grid grid-cols-3 border-t border-[#c4b9a8]">
+        {STRESSORS.map((item, i) => (
+          <div
+            key={i}
+            className={`esv-item relative text-left
+              ${i === 0 ? 'pt-10 pr-8 pb-10 pl-0' : ''}
+              ${i === 1 ? 'px-8 py-10 border-x border-[#c4b9a8]' : ''}
+              ${i === 2 ? 'pt-10 pl-8 pb-10 pr-0' : ''}
+            `}
+          >
+            <div className="esv-item-bg" />
+
+            {/* Number */}
+            <span
+              className="text-[13px] font-light tracking-[0.2em] text-[#b0a492] block mb-5"
+              style={{ fontFamily: '"Cormorant Garamond", Georgia, serif' }}
             >
-              {active && (
-                <p
-                  className={`leading-snug ${line.italic ? 'italic' : 'not-italic'}`}
-                  style={{
-                    fontFamily: '"Playfair Display", Georgia, serif',
-                    fontSize: style.fontSize,
-                    fontWeight: style.fontWeight,
-                    color: style.color,
-                    letterSpacing: '-0.01em',
-                    whiteSpace: i === 2 ? 'pre-line' : 'normal',
-                    transition: 'color 0.5s ease',
-                  }}
-                >
-                  {displayed}
-                  {typing && (
-                    <span
-                      className="inline-block align-middle ml-0.5"
-                      style={{
-                        width: 2,
-                        height: '0.75em',
-                        background: cursorColors[i],
-                        display: 'inline-block',
-                        verticalAlign: 'middle',
-                        animation: 'blink 0.65s step-end infinite',
-                      }}
-                    />
-                  )}
-                </p>
-              )}
+              {item.number}
+            </span>
 
-              {done && i === 1 && (
-                <span
-                  className="block mt-6 mx-auto h-px"
-                  style={{
-                    width: 240,
-                    background: 'linear-gradient(to right, transparent, #c4b9a8, transparent)',
-                  }}
-                />
-              )}
-            </div>
-          )
-        })}
+            {/* Title */}
+            <p
+              className="text-[clamp(24px,4vw,30px)] font-bold text-[#2c2825] mb-4"
+              style={{ fontFamily: '"Playfair Display", Georgia, serif' }}
+            >
+              {item.title.map((line, j) => (
+                <span key={j}>
+                  {line}
+                  {j < item.title.length - 1 && <br />}
+                </span>
+              ))}
+            </p>
+
+            {/* Description */}
+            <p
+              className="text-[24px] font-bold text-black leading-[1.7] m-0 italic"
+              style={{ fontFamily: '"Cormorant Garamond", Georgia, serif' }}
+            >
+              {item.desc}
+            </p>
+
+            {/* Rule */}
+            <div className="w-7 h-px bg-[#c4b9a8] mt-5" />
+          </div>
+        ))}
       </div>
 
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
-        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
-      `}</style>
+      {/* Footer */}
+      <div className="mt-14 pt-8 border-t border-[#c4b9a8] flex items-center justify-center">
+        <div
+          className="flex-1 h-px mr-6"
+          style={{ background: 'linear-gradient(to left, transparent, #c4b9a8)' }}
+        />
+        <div
+          className="flex-1 h-px ml-6"
+          style={{ background: 'linear-gradient(to right, transparent, #c4b9a8)' }}
+        />
+      </div>
     </section>
   )
 }
