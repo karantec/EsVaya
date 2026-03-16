@@ -11,6 +11,7 @@ import EsvayaHero from "./Components/Navbar";
 import Hero from "./Components/HeroSection";
 import EsvayaSection from "./Components/EsvayaSection";
 import Ritual from "./Components/Ritual";
+import BlogCarouselDetail from "./Components/BlogSection";
 
 const App = () => {
   return (
@@ -33,6 +34,7 @@ const App = () => {
             </>
           }
         />
+        <Route path="/blog" element={<BlogCarouselDetail />} />
         <Route path="/thearchitecture" element={<EsvayaProductSection />} />
         <Route path="/story" element={<EsvayaStory />} />
         <Route path="/ritual" element={<Ritual />} />

@@ -133,7 +133,7 @@ function WaitlistButton() {
 
           <span className="flex items-center justify-center gap-2.5 h-[14px]">
             {phase === "idle" && (
-              <span style={{ animation: "ev-slidein 0.25s ease" }}>JOIN THE WAITLIST</span>
+              <span  className="font-bold" style={{fontSize:"bold"   }}>JOIN THE WAITLIST</span>
             )}
             {phase === "loading" && (
               <>
@@ -160,9 +160,7 @@ function WaitlistButton() {
           </span>
         </button>
 
-        <p className="text-[9px] tracking-[0.2em] text-white/20">
-          LIMITED TO 150 KITS · SHIPPING BEGINS MONTH 1
-        </p>
+        
       </div>
     </>
   );
@@ -237,10 +235,10 @@ function RitualKitSection() {
           <h2 className="font-serif text-4xl md:text-5xl text-white mb-3">
             The Esvaya Ritual Kit
           </h2>
-          <p className="font-serif text-5xl text-white mb-2">₹1,199</p>
-          <p className="text-[11px] tracking-widest text-white/50 mb-8">
+          {/* <p className="font-serif text-5xl text-white mb-2">1,199</p> */}
+          {/* <p className="text-[11px] tracking-widest text-white/50 mb-8">
             INCL. ALL TAXES · FREE SHIPPING
-          </p>
+          </p> */}
           <WaitlistButton />
         </div>
       </div>
@@ -250,20 +248,31 @@ function RitualKitSection() {
 
 function BadgesSection() {
   return (
-    <section className="py-14 px-10 bg-white">
-      <div className="max-w-5xl mx-auto flex items-center justify-center gap-12 flex-wrap">
+    <section className="py-10 sm:py-12 md:py-14 px-4 sm:px-6 md:px-10 bg-white">
+      <div className="max-w-5xl mx-auto flex flex-wrap items-center justify-center gap-8 sm:gap-10 md:gap-12">
+
         {badges.map((b) => (
-          <div key={b.label} className="flex flex-col items-center gap-3">
-            <div className="w-11 h-11 rounded-full border border-black/20 flex items-center justify-center text-black/55 text-base hover:border-black/60 hover:text-black transition-colors duration-200 cursor-default">
+          <div
+            key={b.label}
+            className="flex flex-col items-center gap-2 sm:gap-3 w-1/3 sm:w-auto"
+          >
+
+            <div className="w-9 h-9 sm:w-10 sm:h-10 md:w-11 md:h-11 rounded-full border border-black/20 flex items-center justify-center text-black/55 text-sm sm:text-base hover:border-black/60 hover:text-black transition-colors duration-200 cursor-default">
               {b.icon}
             </div>
-            <p className="text-[9px] tracking-[0.22em] text-black font-bold">{b.label}</p>
+
+            <p className="text-[8px] sm:text-[9px] tracking-[0.22em] text-black font-bold text-center">
+              {b.label}
+            </p>
+
           </div>
         ))}
+
       </div>
     </section>
   );
 }
+
 
 export default function EsvayaProductSection() {
   return (

@@ -134,7 +134,7 @@ export default function EsvayaSection() {
         </div>
 
         {/* Nav items — stack on mobile, 3 col on desktop */}
-     <div className="grid grid-cols-1 sm:grid-cols-3 sm:divide-x mt-8 py-20 sm:ml-96">
+     <div className="grid grid-cols-1 sm:grid-cols-3 sm:divide-x mt-8 py-20 ml-14">
           {navItems.map((item, i) => (
             <a
               key={item.title}
@@ -143,7 +143,7 @@ export default function EsvayaSection() {
                 e.preventDefault();
                 navigate(item.href);
               }}
-              className="group relative flex flex-col overflow-hidden border-t-[1.5px] border-transparent  transition-all duration-250 py-6 pb-8 sm:pb-9 border-b border-neutral-100 sm:border-b-0"
+              className="group relative ml-14 flex flex-col overflow-hidden border-t-[1.5px] border-transparent  transition-all duration-250 py-6 pb-8 sm:pb-9 border-b border-neutral-100 sm:border-b-0"
               style={{
                 paddingLeft: i !== 0 ? "0" : "0",
               }}

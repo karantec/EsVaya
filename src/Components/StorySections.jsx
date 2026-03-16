@@ -56,7 +56,7 @@ const useInView = (threshold = 0.06) => {
 
 const chapters = [
   {
-    number: "01",
+    // number: "01",
     title: "The Search",
     body: "I tried everything the market offered. Nothing worked — not because I was broken, but because they were built for a different problem.",
     grid: [
@@ -69,7 +69,7 @@ const chapters = [
     ],
   },
   {
-    number: "02",
+    // number: "02",
     title: "The Discovery",
     body: "The olfactory system is the only sense with a direct pathway to the emotional brain. Essential oil blends, chosen for chemistry not for fragrance, applied consistently, could become the signal for the nervous system. ESVAYA was built around that one insight. Natural. Functional. Two minutes. Every day.",
   },
@@ -142,7 +142,7 @@ function ChapterCard({ chapter, index }) {
             <span
               style={{ transitionDelay: `${index * 60 + 100}ms` }}
               className={[
-                "font-fraunces text-8xl lg:text-9xl font-black text-neutral-100 leading-none select-none",
+                "font-fraunces text-6xl lg:text-9xl font-black text-neutral-100 leading-none select-none",
                 "transition-all duration-500",
                 inView ? "opacity-100" : "opacity-0",
               ].join(" ")}
@@ -150,16 +150,17 @@ function ChapterCard({ chapter, index }) {
               {chapter.number}
             </span>
 
-            <h3
-              style={{ transitionDelay: `${index * 60 + 160}ms` }}
-              className={[
-                "font-fraunces text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black leading-[1.0] text-neutral-950 -mt-6",
-                "transition-all duration-500",
-                inView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-3",
-              ].join(" ")}
-            >
-              {chapter.title}
-            </h3>
+           <h3
+  style={{ transitionDelay: `${index * 60 + 160}ms` }}
+  className={[
+    "font-fraunces font-black leading-[1.0] text-neutral-950 -mt-2 sm:-mt-4 md:-mt-6",
+    "text-3xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl",
+    "transition-all duration-500",
+    inView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-3",
+  ].join(" ")}
+>
+  {chapter.title}
+</h3>
 
             <div
               style={{ transitionDelay: `${index * 60 + 350}ms` }}
@@ -269,10 +270,7 @@ export default function EsvayaStory() {
               <em className="not-italic font-light italic">experience.</em>
             </h1>
 
-            <div className="fade-up-3 mt-8 flex items-center gap-4">
-              <div className="w-10 h-[3px] bg-neutral-950" />
-              <span className="font-dm text-xs tracking-[0.35em] uppercase text-neutral-500 font-bold">Our Story</span>
-            </div>
+            
           </div>
 
           {/* Right */}

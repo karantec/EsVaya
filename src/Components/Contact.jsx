@@ -254,11 +254,12 @@ export default function GetInTouch() {
           {/* ── RIGHT — Values ── */}
           <div className="flex flex-col">
             <p
-              className="uppercase text-gray-400 tracking-widest mb-8 text-black font-semibold"
-              style={{ fontSize: 30, letterSpacing: '0.3em, color:black' }}
+              className="  tracking-widest mb-8 text-black italic "
+              style={{ fontFamily: 'Playfair Display, serif', letterSpacing: '0.3em, color:black',
+                fontSize: 'clamp(30px, 3.5vw, 48px)'  }}
             >
               What We Stand For
-            </p>
+            </p> 
 
             <div className="flex flex-col">
               {values.map(({ num, title, desc }, i) => (

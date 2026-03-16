@@ -5,8 +5,8 @@ const eveningIngredients = ["Lavender", "Vetiver", "Bergamot", "Clary Sage"];
 
 const dayMilestones = [
   { day: "1",  desc: "You notice something pleasant" },
-  { day: "10", desc: "You notice it working" },
-  { day: "30", desc: "Your body asks for it before you remember" },
+  { day: " 10", desc: "You notice it working" },
+  { day: "  30", desc: "Your body asks for it before you remember" },
 ];
 
 function useReveal() {
@@ -103,11 +103,12 @@ function ScienceCard() {
             >
               <p
                 style={{ fontFamily: "'Cormorant Garamond', serif" }}
-                className="text-4xl sm:text-5xl font-light text-black mb-1 leading-none"
+                className="text-2xl  font-normal text-black mb-1 leading-none"
               >
-                {day}
+                By Day 
+                <span className="font-bold">{""} {day}</span>
               </p>
-              <p className="text-[11px] sm:text-xs text-black leading-[1.5]">{desc}</p>
+              <p className="text-[11px]  text-black leading-[1.5]">{desc}</p>
             </div>
           ))}
         </div>

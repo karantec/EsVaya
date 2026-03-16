@@ -41,13 +41,9 @@ export default function Navbar() {
 
         {/* Logo */}
         <NavLink to="/" className="no-underline text-white font-bold">
- <div className="flex items-center gap-3">
-    <img
-      src="https://res.cloudinary.com/dg3djpzq2/image/upload/bgremove_cdngiu.png"
-      alt="Esvaya"
-      className="h-12 w-auto object-contain bg-white rounded "
-    />
-  </div>
+ <div className="flex items-center gap-3 font-bold text-4xl">
+  Esvaya
+</div>
         </NavLink>
 
         {/* Desktop links */}

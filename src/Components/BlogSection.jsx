@@ -204,9 +204,9 @@ function BlogCard({ post, index }) {
   )
 }
 
-export default function BlogCarousel() {
+export default function BlogCarouselDetail() {
   const [currentPage, setCurrentPage] = useState(0)
-  const [cardsPerPage, setCardsPerPage] = useState(3)
+  const [cardsPerPage, setCardsPerPage] = useState(6)
   const [animState, setAnimState] = useState('visible')
   const [direction, setDirection] = useState(1)
 
@@ -215,7 +215,7 @@ export default function BlogCarousel() {
       const w = window.innerWidth
       if (w < 560) setCardsPerPage(1)
       else if (w < 900) setCardsPerPage(2)
-      else setCardsPerPage(3)
+      else setCardsPerPage(4)
     }
     update()
     window.addEventListener('resize', update)
@@ -268,7 +268,7 @@ export default function BlogCarousel() {
     <section className="bg-[#0c0c0c] py-16">
 
       {/* Header */}
-      <div className="text-center mb-10 px-6">
+      <div className="text-center mb-10 px-6 mt-14">
         <p
           className="text-[28px] tracking-[0.2em] text-white uppercase mb-3"
           style={{ fontFamily: 'DM Sans, sans-serif' }}
@@ -285,7 +285,7 @@ export default function BlogCarousel() {
       </div>
 
       {/* Carousel */}
-      <div className="relative px-11 md:px-14 max-w-[2000px] mx-auto">
+      <div className="relative px-11 md:px-14 max-w-full mx-auto">
 
         {/* Prev */}
         <button
