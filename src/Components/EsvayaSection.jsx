@@ -70,15 +70,13 @@ export default function EsvayaSection() {
 
         {/* Top row */}
         <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between mb-8 sm:mb-12 pb-6 border-b border-white/[0.06]">
-          <p className="text-[13px] sm:text-[14px] font-light text-white/45 leading-[1.8] tracking-wide max-w-lg">
-            <span className="text-white font-normal text-[11px] tracking-[.06em] uppercase border-b border-white/35 pb-px">
-              Esvaya
-            </span>
+          <p className="text-[25px]  font-light text-white/45 leading-[1.8] tracking-wide max-w-8xl">
+            
+            
             <br />
-            <br />
-            believes emotional wellness should be preventive,
-            <br />
-            accessible, and integrated in your daily routine
+            Believes emotional wellness should be preventive, accessible, and integrated in your daily routine
+            
+            
           </p>
           <div className="self-start text-[10px] font-light tracking-[.18em] uppercase text-white/25 border border-white/10 px-4 py-2 whitespace-nowrap">
             Emotional Wellness · Since 2023
