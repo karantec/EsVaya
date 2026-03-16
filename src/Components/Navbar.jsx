@@ -3,9 +3,12 @@ import { useState, useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 
 const NAV_LINKS = [
-  { label: "PRODUCTS",  to: "/products"  },
-  { label: "OUR STORY", to: "/our-story" },
-  { label: "OUR BLOG",  to: "/blog"      },
+  { label: "Product",  to: "/thearchitecture"  },
+   { label: "Ritual",  to: "/ritual"      },
+      { label: "Journal",  to: "/blog"      },
+  { label: "Our Story", to: "/story" },
+ 
+  
 ];
 
 export default function Navbar() {
@@ -13,8 +16,8 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const location                = useLocation();
 
-  useEffect(() => {
-    setMenuOpen(false);
+  // eslint-disable-next-line react-hooks/set-state-in-effect
+  useEffect(() => { setMenuOpen(false);
   }, [location.pathname]);
 
   useEffect(() => {
@@ -38,9 +41,13 @@ export default function Navbar() {
 
         {/* Logo */}
         <NavLink to="/" className="no-underline text-white font-bold">
-          <span className="font-serif text-white tracking-[0.3em] text-xl leading-none">
-            ESVAYA
-          </span>
+ <div className="flex items-center gap-3">
+    <img
+      src="https://res.cloudinary.com/dg3djpzq2/image/upload/bgremove_cdngiu.png"
+      alt="Esvaya"
+      className="h-12 w-auto object-contain bg-white rounded "
+    />
+  </div>
         </NavLink>
 
         {/* Desktop links */}

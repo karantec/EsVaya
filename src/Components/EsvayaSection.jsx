@@ -19,7 +19,7 @@ const cards = [
   },
   {
     icon: "◇",
-    title: "Ritual",
+    title: "Regulation",
     body: (
       <>
         A ritual is intentional whereas a routine is mechanical. Esvaya turns
@@ -69,19 +69,11 @@ export default function EsvayaSection() {
         <div className="absolute -top-32 -right-32 w-[500px] h-[500px] rounded-full bg-white/[0.02] pointer-events-none" />
 
         {/* Top row */}
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between mb-8 sm:mb-12 pb-6 border-b border-white/[0.06]">
-          <p className="text-[25px]  font-light text-white/45 leading-[1.8] tracking-wide max-w-8xl">
-            
-            
-            <br />
-            Believes emotional wellness should be preventive, accessible, and integrated in your daily routine
-            
-            
-          </p>
-          <div className="self-start text-[10px] font-light tracking-[.18em] uppercase text-white/25 border border-white/10 px-4 py-2 whitespace-nowrap">
-            Emotional Wellness · Since 2023
-          </div>
-        </div>
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-center mb-8 sm:mb-12 pb-6 border-b border-white/[0.06]">
+  <p className="text-[25px] font-light text-white leading-[1.8] tracking-wide max-w-8xl text-center mx-auto">
+    Esvaya believes emotional wellness should be preventive, accessible, and integrated in your daily routine
+  </p>
+</div>
 
         {/* Cards — 1 col mobile, 3 col desktop */}
         <div className="grid grid-cols-1 sm:grid-cols-3">
@@ -133,21 +125,16 @@ export default function EsvayaSection() {
       </div>
 
       {/* ── White nav ── */}
-      <div className="bg-white px-5 sm:px-8 md:px-[52px]">
-        <div className="flex items-center justify-between py-5 border-b border-neutral-100">
-          <span className="text-[10px] font-medium tracking-[.22em] uppercase text-neutral-300">
+      <div className="bg-white py-16 px-5 sm:px-8 md:px-[52px]">
+        <div className="flex items-center justify-center py-5 border-b border-neutral-100">
+          <span className="text-[28px] font-bold tracking-[.22em] uppercase text-black">
             Explore Esvaya
           </span>
-          <a
-            href="/all"
-            className="text-[11px] font-light tracking-wide text-neutral-400 hover:text-neutral-800 transition-colors flex items-center gap-2"
-          >
-            View all sections &nbsp;→
-          </a>
+         
         </div>
 
         {/* Nav items — stack on mobile, 3 col on desktop */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 sm:divide-x divide-neutral-100">
+     <div className="grid grid-cols-1 sm:grid-cols-3 sm:divide-x mt-8 py-20 sm:ml-96">
           {navItems.map((item, i) => (
             <a
               key={item.title}
@@ -156,30 +143,30 @@ export default function EsvayaSection() {
                 e.preventDefault();
                 navigate(item.href);
               }}
-              className="group relative flex flex-col overflow-hidden border-t-[1.5px] border-transparent hover:border-[#0d0d0d] transition-all duration-250 py-6 pb-8 sm:pb-9 border-b border-neutral-100 sm:border-b-0"
+              className="group relative flex flex-col overflow-hidden border-t-[1.5px] border-transparent  transition-all duration-250 py-6 pb-8 sm:pb-9 border-b border-neutral-100 sm:border-b-0"
               style={{
                 paddingLeft: i !== 0 ? "0" : "0",
               }}
             >
               {/* bg fill on hover */}
-              <div className="absolute inset-0 bg-neutral-50 scale-y-0 origin-bottom group-hover:scale-y-100 transition-transform duration-300 z-0" />
+              {/* <div className="absolute inset-0  scale-y-0 origin-bottom group-hover:scale-y-100 transition-transform duration-300 z-0" /> */}
 
               <div className="relative z-10 flex items-center gap-3 mb-4">
-                <div className="w-7 h-7 rounded-full border border-neutral-200 flex items-center justify-center text-xs text-neutral-400 group-hover:bg-[#0d0d0d] group-hover:border-[#0d0d0d] group-hover:text-white group-hover:rotate-45 transition-all duration-250">
+                <div className="w-7 h-7 rounded-full border  flex items-center justify-center text-xs text-black  group-hover:text-white  transition-all duration-250">
                   ↗
                 </div>
-                <span className="text-[10px] font-medium tracking-[.15em] uppercase text-neutral-300 group-hover:text-neutral-500 transition-colors duration-250">
+                <span className="text-[15px]  tracking-[.15em] uppercase text-black font-bold  transition-colors duration-250">
                   {item.tag}
                 </span>
               </div>
 
               <span
                 style={{ fontFamily: "'Cormorant Garamond', serif" }}
-                className="relative z-10 text-[22px] font-normal text-[#0d0d0d] tracking-tight leading-tight mb-1.5"
+                className="relative z-10 text-[28px]  text-[#0d0d0d] font-bold tracking-tight leading-tight mb-1.5"
               >
                 {item.title}
               </span>
-              <span className="relative z-10 text-[11.5px] font-light text-neutral-400 tracking-wide">
+              <span className="relative z-10 text-[13px]  text-black font-bold tracking-wide">
                 {item.sub}
               </span>
             </a>

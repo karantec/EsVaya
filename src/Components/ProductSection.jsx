@@ -1,5 +1,11 @@
 import { useState, useRef } from "react";
 
+import { GiChemicalDrop, GiPlantWatering } from "react-icons/gi";
+import { GrTest } from "react-icons/gr";
+import { LiaRecycleSolid } from "react-icons/lia";
+import { MdOutlineCrueltyFree } from "react-icons/md";
+import { TbBiohazardOff } from "react-icons/tb";
+
 const products = [
   {
     time: "MORNING",
@@ -26,63 +32,14 @@ const products = [
 ];
 
 const badges = [
-  { icon: "✓", label: "LAB TESTED" },
-  { icon: "☺", label: "NON TOXIC" },
-  { icon: "⊞", label: "CRUELTY FREE." },
-  { icon: "♦", label: "NATURAL INGREDIENTS" },
-  { icon: "◎", label: "PLANT BASED" },
-  { icon: "≡", label: "INDIAN ORIGIN" },
-  { icon: "◉", label: "PARABEN FREE" },
+  { icon: <GrTest />,   label: "LAB TESTED" },
+  { icon: <TbBiohazardOff /> ,     label: "NON TOXIC" },
+  { icon: <MdOutlineCrueltyFree />,     label: "CRUELTY FREE" },
+  { icon: <GiPlantWatering />,    label: "NATURAL INGREDIENTS" },
+  { icon: <GiChemicalDrop />,label: "PLANT BASED" },
+  { icon: <LiaRecycleSolid />,   label: "INDIAN ORIGIN" },
+  // { icon: <FaAtom />,    label: "PARABEN FREE" },
 ];
-
-function ProductCard({ product }) {
-  return (
-    <div className="flex gap-10 items-start">
-      <div className="w-[200px] flex-shrink-0 aspect-[3/4] bg-[#111] rounded-sm border border-white/10" />
-      <div className="flex-1 pt-1">
-        <p className="text-[12px] tracking-[0.25em] text-white mb-4 flex items-center gap-3">
-          {product.time}
-          <span className="inline-block w-12 h-px bg-white/15" />
-        </p>
-        <h2 className="font-serif text-4xl leading-tight text-white mb-6">
-          <em style={{ fontStyle: "italic" }} className="text-white font-bold">
-            {product.italic}
-          </em>
-          {product.rest}
-        </h2>
-        <div className="space-y-0">
-          {product.steps.map((step, i) => (
-            <div key={i} className="flex gap-4 items-start py-3 border-b border-white/8">
-              {/* <span className="text-[10px] text-white/20 mt-0.5 w-3">{i + 1}.</span> */}
-              <p className="text-white text-md leading-relaxed">{step}</p>
-            </div>
-          ))}
-        </div>
-        <p className="mt-6 text-white  text-md italic leading-relaxed">{product.signal}</p>
-      </div>
-    </div>
-  );
-}
-
-function ArchitectureSection() {
-  return (
-    <section className=" px-10 text-center max-w-3xl mx-auto">
-      <div className="w-px h-16 bg-white/10 mx-auto mb-12" />
-      <p className="text-[28px] tracking-[0.25em] font-bold text-white mb-8">THE ARCHITECTURE</p>
-      <h2 className="font-serif text-4xl md:text-6xl leading-tight text-white mb-8 mb-6">
-        Two Products. <br/>30 days Ritual. <br/>One System{" "}
-        
-      </h2>
-      <p className="text-white text-2xl mt-8 py-10 font-bold leading-relaxed ">
-                       Exclusive Access to Founder’s Edition
-                              The Esvaya Ritual Kit
-                                     
-
-      </p>
-      
-    </section>
-  );
-}
 
 function WaitlistButton() {
   const [phase, setPhase] = useState("idle");
@@ -113,9 +70,7 @@ function WaitlistButton() {
           from { transform: scale(0); opacity: 0.35; }
           to   { transform: scale(5); opacity: 0; }
         }
-        @keyframes ev-spin {
-          to { transform: rotate(360deg); }
-        }
+        @keyframes ev-spin { to { transform: rotate(360deg); } }
         @keyframes ev-check {
           from { stroke-dashoffset: 22; opacity: 0; }
           to   { stroke-dashoffset: 0;  opacity: 1; }
@@ -124,30 +79,26 @@ function WaitlistButton() {
           from { opacity: 0; transform: translateY(6px); }
           to   { opacity: 1; transform: translateY(0); }
         }
-        @keyframes ev-border-march {
+        @keyframes ev-march {
           0%   { background-position: 0% 50%; }
           100% { background-position: 200% 50%; }
         }
-        .ev-marching-border { position: relative; }
-        .ev-marching-border::before {
+        .ev-marching { position: relative; border-color: transparent !important; color: rgba(255,255,255,0.35) !important; }
+        .ev-marching::before {
           content: "";
-          position: absolute;
-          inset: -1px;
+          position: absolute; inset: -1px;
           background: linear-gradient(90deg, #fff, #555, #fff, #333, #fff);
           background-size: 200% 100%;
-          animation: ev-border-march 2s linear infinite;
-          border-radius: inherit;
-          z-index: 0;
+          animation: ev-march 2s linear infinite;
+          border-radius: inherit; z-index: 0;
         }
-        .ev-marching-border::after {
+        .ev-marching::after {
           content: "";
-          position: absolute;
-          inset: 0px;
-          background: #000;
-          border-radius: inherit;
-          z-index: 1;
+          position: absolute; inset: 0px;
+          background: #080808;
+          border-radius: inherit; z-index: 1;
         }
-        .ev-marching-border > * { position: relative; z-index: 2; }
+        .ev-marching > * { position: relative; z-index: 2; }
       `}</style>
 
       <div className="flex flex-col items-center gap-3 mt-4">
@@ -156,8 +107,8 @@ function WaitlistButton() {
           onClick={handleClick}
           onMouseMove={handleMouseMove}
           disabled={phase === "loading"}
-          className={`relative overflow-hidden px-14 py-4 text-xs tracking-[0.2em] transition-colors duration-400 select-none
-            ${phase === "loading" ? "ev-marching-border border-transparent text-white/40 cursor-default" : ""}
+          className={`relative overflow-hidden px-14 py-4 text-[10px] tracking-[0.22em] font-medium transition-all duration-300 select-none
+            ${phase === "loading" ? "ev-marching border border-transparent cursor-default" : ""}
             ${phase === "done"    ? "border border-white/50 text-white" : ""}
             ${phase === "idle"    ? "border border-white/20 text-white/60 hover:border-white/50 hover:text-white" : ""}
           `}
@@ -209,7 +160,7 @@ function WaitlistButton() {
           </span>
         </button>
 
-        <p className="text-[9px] tracking-[0.2em] text-white/12">
+        <p className="text-[9px] tracking-[0.2em] text-white/20">
           LIMITED TO 150 KITS · SHIPPING BEGINS MONTH 1
         </p>
       </div>
@@ -217,23 +168,79 @@ function WaitlistButton() {
   );
 }
 
+function ProductCard({ product }) {
+  return (
+    <div className="flex flex-col pt-1">
+      <p className="text-[11px] tracking-[0.28em] text-white mb-4 flex items-center gap-3">
+        {product.time}
+        <span className="inline-block w-10 h-px bg-white/15" />
+      </p>
+      <h2 className="font-serif text-4xl leading-tight text-white mb-6">
+        <em className="italic font-semibold">{product.italic}</em>
+        {product.rest}
+      </h2>
+      <div>
+        {product.steps.map((step, i) => (
+          <div key={i} className="py-3 border-b border-white/[0.07]">
+            <p className="text-white/90 text-sm leading-relaxed">{step}</p>
+          </div>
+        ))}
+      </div>
+      <p className="mt-5 text-white/70 text-[15px] italic font-serif leading-relaxed">
+        {product.signal}
+      </p>
+    </div>
+  );
+}
+
+function CenterImage() {
+  return (
+    <div className="flex flex-col items-center pt-8 px-8">
+      <div className="relative w-64 flex-shrink-0 rounded-sm overflow-hidden border border-white/[0.08]"
+       >
+        <img
+          src="https://res.cloudinary.com/dg3djpzq2/image/upload/v1773636175/WhatsApp_Image_2026-03-16_at_10.11.27_AM_djlnoe.jpg"
+          alt="Esvaya Ritual Kit"
+          className="w-[96] h-[300px] object-cover"
+        />
+        {/* Subtle overlay for depth */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
+      </div>
+      
+    </div>
+  );
+}
+
+function ArchitectureSection() {
+  return (
+    <section className="px-10 text-center max-w-3xl mx-auto">
+      <div className="w-px h-16 bg-white/10 mx-auto mb-12" />
+      <p className="text-[11px] tracking-[0.28em] font-semibold text-white mb-8">THE ARCHITECTURE</p>
+      <h2 className="font-serif text-5xl md:text-6xl leading-tight text-white mb-6">
+        Two Products.<br />30 days Ritual.<br />One System
+      </h2>
+      <p className="text-white text-xl font-semibold tracking-widest leading-relaxed py-8">
+        Exclusive Access to Founder's Edition<br />The Esvaya Ritual Kit
+      </p>
+    </section>
+  );
+}
+
 function RitualKitSection() {
   return (
     <section className="py-20 px-10">
-      <div className="max-w-2xl mx-auto">
-       
-        <div className="border-t border-white/8 pt-12 text-center">
-          <p className="text-[15px] tracking-[0.25em] text-white mb-4">
+      <div className="max-w-2xl mx-auto text-center">
+        <div className="border-t border-white/[0.07] pt-12">
+          <p className="text-[12px] tracking-[0.25em] text-white mb-4">
             FOUNDER'S EDITION · 150 KITS ONLY
           </p>
-          <h2 className="font-serif text-4xl md:text-5xl text-white mb-3">The Esvaya Ritual Kit</h2>
-         
-          <div className="mb-8 justify-center ml-15">
-            <span className="font-serif text-5xl text-white text-center ">₹1,199</span>
-          </div>
-           <span className="text-white text-[15px] tracking-widest ml-3">
-              INCL. ALL TAXES · FREE SHIPPING
-            </span>
+          <h2 className="font-serif text-4xl md:text-5xl text-white mb-3">
+            The Esvaya Ritual Kit
+          </h2>
+          <p className="font-serif text-5xl text-white mb-2">₹1,199</p>
+          <p className="text-[11px] tracking-widest text-white/50 mb-8">
+            INCL. ALL TAXES · FREE SHIPPING
+          </p>
           <WaitlistButton />
         </div>
       </div>
@@ -244,13 +251,13 @@ function RitualKitSection() {
 function BadgesSection() {
   return (
     <section className="py-14 px-10 bg-white">
-      <div className="max-w-8xl mx-auto flex items-center justify-center gap-24 flex-wrap">
+      <div className="max-w-5xl mx-auto flex items-center justify-center gap-12 flex-wrap">
         {badges.map((b) => (
-          <div key={b.label} className="flex flex-col items-center gap-4">
-            <div className="w-12 h-12 rounded-full border border-black/20 flex items-center justify-center text-black/60 text-lg hover:border-black/60 hover:text-black transition-colors duration-200">
+          <div key={b.label} className="flex flex-col items-center gap-3">
+            <div className="w-11 h-11 rounded-full border border-black/20 flex items-center justify-center text-black/55 text-base hover:border-black/60 hover:text-black transition-colors duration-200 cursor-default">
               {b.icon}
             </div>
-            <p className="text-[15px] tracking-[0.2em] text-black font-bold">{b.label}</p>
+            <p className="text-[9px] tracking-[0.22em] text-black font-bold">{b.label}</p>
           </div>
         ))}
       </div>
@@ -260,22 +267,34 @@ function BadgesSection() {
 
 export default function EsvayaProductSection() {
   return (
-    <div className="bg-black min-h-screen font-sans">
-      <section className="pt-16 pb-16 px-10 text-center max-w-4xl mx-auto">
-        <p className="font-serif text-xl md:text-2xl text-white italic leading-relaxed">
-          We heard you, and built something you can use in two minute. Integrated in your daily routine to help you in deep sleep and strong focus
+    <div className="bg-[#080808] min-h-screen py-20" style={{ fontFamily: "'Montserrat', sans-serif" }}>
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Montserrat:wght@300;400;500;600&display=swap');
+        .font-serif { font-family: 'Cormorant Garamond', Georgia, serif; }
+      `}</style>
+
+      {/* Intro */}
+      <section className="pt-16 pb-0  px-10 text-center max-w-3xl mx-auto">
+        <p className="font-serif text-xl md:text-2xl text-white/85 italic leading-relaxed">
+          We heard you, and built something you can use in two minutes. Integrated in your daily
+          routine to help you in deep sleep and strong focus.
         </p>
-        <ArchitectureSection />
       </section>
 
-      <section className="px-10 pb-16 max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-14">
-        {products.map((p) => (
-          <ProductCard key={p.time} product={p} />
-        ))}
+      {/* Architecture */}
+      <ArchitectureSection />
+
+      {/* Products — 3 column: card | image | card */}
+      <section className="px-10 pb-16 max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-0">
+        <ProductCard product={products[0]} />
+        <CenterImage />
+        <ProductCard product={products[1]} />
       </section>
 
-      
+      {/* Kit CTA */}
       <RitualKitSection />
+
+      {/* Badges */}
       <BadgesSection />
     </div>
   );

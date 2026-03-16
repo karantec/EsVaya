@@ -1,7 +1,46 @@
 import { useState, useEffect, useRef } from "react";
 
-/* ── Intersection observer hook ── */
-const useInView = (threshold = 0.1) => {
+/*
+  ─────────────────────────────────────────────────────────────
+  SETUP REQUIRED
+  ─────────────────────────────────────────────────────────────
+
+  1. Google Fonts — add to index.html <head>:
+     <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,900;1,9..144,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+
+  2. tailwind.config.js — extend theme:
+     fontFamily: {
+       fraunces: ['Fraunces', 'Georgia', 'serif'],
+       dm:       ['DM Sans', 'sans-serif'],
+     },
+     keyframes: {
+       fadeUp:  { from:{ opacity:'0', transform:'translateY(30px)' }, to:{ opacity:'1', transform:'translateY(0)' } },
+       shimmer: { '0%':{ backgroundPosition:'-300% center' }, '100%':{ backgroundPosition:'300% center' } },
+     },
+     animation: {
+       fadeUp:  'fadeUp 0.6s ease-out both',
+       shimmer: 'shimmer 5s linear infinite',
+     },
+
+  3. Global CSS (index.css / globals.css):
+     .shimmer-text {
+       background: linear-gradient(90deg,#000 0%,#555 25%,#000 50%,#777 75%,#000 100%);
+       background-size: 300% auto;
+       -webkit-background-clip: text;
+       -webkit-text-fill-color: transparent;
+       background-clip: text;
+       animation: shimmer 5s linear infinite;
+     }
+     @keyframes shimmer { 0%{background-position:-300% center} 100%{background-position:300% center} }
+     @keyframes fadeUp  { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+     .fade-up-1 { animation: fadeUp 0.6s ease-out 0.05s both; }
+     .fade-up-2 { animation: fadeUp 0.6s ease-out 0.2s both; }
+     .fade-up-3 { animation: fadeUp 0.6s ease-out 0.35s both; }
+     .fade-up-4 { animation: fadeUp 0.6s ease-out 0.5s both; }
+  ─────────────────────────────────────────────────────────────
+*/
+
+const useInView = (threshold = 0.06) => {
   const ref = useRef(null);
   const [inView, setInView] = useState(false);
   useEffect(() => {
@@ -15,397 +54,267 @@ const useInView = (threshold = 0.1) => {
   return [ref, inView];
 };
 
-/* ── Animated counter ── */
-function Counter({ target, suffix = "", duration = 1800 }) {
-  const [count, setCount] = useState(0);
-  const [ref, inView] = useInView(0.3);
-  useEffect(() => {
-    if (!inView) return;
-    let start = 0;
-    const step = target / (duration / 16);
-    const timer = setInterval(() => {
-      start += step;
-      if (start >= target) { setCount(target); clearInterval(timer); }
-      else setCount(Math.floor(start));
-    }, 16);
-    return () => clearInterval(timer);
-  }, [inView, target, duration]);
-  return <span ref={ref}>{count}{suffix}</span>;
-}
+const chapters = [
+  {
+    number: "01",
+    title: "The Search",
+    body: "I tried everything the market offered. Nothing worked — not because I was broken, but because they were built for a different problem.",
+    grid: [
+      { label: "Meditation Apps",      reason: "Needs 20 min of stillness you don't have" },
+      { label: "Sleep Gummies",        reason: "Averse to ingesting chemicals every night" },
+      { label: "Ayurvedic Oils",       reason: "Overclaims or works too slowly to feel" },
+      { label: "Fragrances",           reason: "Beautiful smell. No functional outcome." },
+      { label: "Stress Supplements",   reason: "Pills feel clinical. Not a ritual." },
+      { label: "Generic Aromatherapy", reason: "No system. No intention. Just scent." },
+    ],
+  },
+  {
+    number: "02",
+    title: "The Discovery",
+    body: "The olfactory system is the only sense with a direct pathway to the emotional brain. Essential oil blends, chosen for chemistry not for fragrance, applied consistently, could become the signal for the nervous system. ESVAYA was built around that one insight. Natural. Functional. Two minutes. Every day.",
+  },
+];
 
-/* ── Rejection card with hover ── */
 function RejectionCard({ item, i, inView }) {
   const [hovered, setHovered] = useState(false);
   return (
     <div
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className="relative overflow-hidden rounded-2xl p-5 cursor-default"
       style={{
-        background: hovered ? "#f7f5f0" : "#ffffff",
-        border: `1.5px solid ${hovered ? "#aaa" : "#ece9e3"}`,
-        transform: inView
-          ? hovered ? "translateY(-4px) scale(1.02)" : "translateY(0) scale(1)"
-          : "translateY(20px)",
+        transitionDelay: inView ? `${220 + i * 60}ms` : "0ms",
+        transition: "all 0.3s ease",
         opacity: inView ? 1 : 0,
-        transition: "all 0.5s cubic-bezier(0.22,1,0.36,1)",
-        transitionDelay: `${300 + i * 80}ms`,
-        boxShadow: hovered ? "0 12px 32px rgba(0,0,0,0.09)" : "0 2px 8px rgba(0,0,0,0.04)",
+        transform: inView ? "translateY(0)" : "translateY(12px)",
       }}
+      className={[
+        "relative overflow-hidden rounded-2xl p-5 cursor-default border",
+        hovered
+          ? "bg-neutral-950 border-neutral-800 -translate-y-1 shadow-xl"
+          : "bg-neutral-100 border-neutral-200",
+      ].join(" ")}
     >
-      <div
-        className="w-7 h-7 rounded-full flex items-center justify-center mb-3"
-        style={{ background: hovered ? "#ffe4e4" : "#f0ede7", transition: "background 0.3s" }}
-      >
-        <span style={{ color: hovered ? "#e55" : "#aaa", fontSize: 13, fontWeight: 700 }}>✕</span>
-      </div>
-      <p className="text-sm font-semibold text-neutral-700 mb-1" style={{ fontFamily: "'DM Sans', sans-serif" }}>
-        {item.label}
-      </p>
-      <p className="text-xs text-neutral-400 leading-snug" style={{ fontFamily: "'DM Sans', sans-serif" }}>
-        {item.reason}
-      </p>
+      <div className={[
+        "absolute top-0 left-0 h-[3px] transition-all duration-400",
+        hovered ? "w-full bg-red-500" : "w-0 bg-red-500",
+      ].join(" ")} style={{ transition: "width 0.4s ease" }} />
+
+      <p className={[
+        "font-dm text-sm font-bold mb-1.5 transition-colors duration-200",
+        hovered ? "text-white" : "text-neutral-900",
+      ].join(" ")}>{item.label}</p>
+      <p className={[
+        "font-dm text-xs leading-snug transition-colors duration-200",
+        hovered ? "text-neutral-400" : "text-neutral-500",
+      ].join(" ")}>{item.reason}</p>
     </div>
   );
 }
 
-/* ── Chapter data ── */
-const chapters = [
-  
-  {
-    num: "", emoji: "🔍", title: "The Search",
-    body: "I tried everything the market offered. Nothing worked — not because I was broken, but because they were built for a different problem.",
-    grid: [
-      { label: "Meditation Apps", reason: "Needs 20 min of stillness you don't have" },
-      { label: "Sleep Gummies", reason: "Averse to ingesting chemicals every night" },
-      { label: "Ayurvedic Oils", reason: "Overclaims or works too slowly to feel" },
-      { label: "Fragrances", reason: "Beautiful smell. No functional outcome." },
-      { label: "Stress Supplements", reason: "Pills feel clinical. Not a ritual." },
-      { label: "Generic Aromatherapy", reason: "No system. No intention. Just scent." },
-    ],
-  },
-  {
-    num: "", emoji: "✨", title: "The Discovery",
-    body: "The olfactory system is the only sense with a direct pathway to the emotional brain. Essential oil blends, chosen for chemistry not for fragrance, applied consistently, could become the signal for nervous system. ESVAYA was built around that one insight. Natural. Functional. Two minutes. Every day.",
-    
-  },
-];
-
-/* ── Chapter card ── */
 function ChapterCard({ chapter, index }) {
-  const [ref, inView] = useInView(0.08);
+  const [ref, inView] = useInView(0.05);
+  const isEven = index % 2 === 0;
+
   return (
     <div
       ref={ref}
-      className="relative rounded-3xl overflow-hidden mb-10"
-      style={{
-        background: "#ffffff",
-        border: "1.5px solid #e0ddd8",
-        boxShadow: inView ? "0 20px 60px rgba(0,0,0,0.07), 0 4px 16px rgba(0,0,0,0.04)" : "none",
-        transform: inView ? "translateY(0) scale(1)" : "translateY(48px) scale(0.97)",
-        opacity: inView ? 1 : 0,
-        transition: "all 0.8s cubic-bezier(0.22,1,0.36,1)",
-        transitionDelay: `${index * 80}ms`,
-      }}
+      style={{ transitionDelay: `${index * 60}ms` }}
+      className={[
+        "relative rounded-3xl overflow-hidden mb-8 bg-white border border-neutral-200",
+        "transition-all duration-500",
+        inView ? "opacity-100 translate-y-0 shadow-lg" : "opacity-0 translate-y-8",
+      ].join(" ")}
     >
-      {/* Animated colour bar — B&W */}
-      <div style={{
-        height: 5,
-        background: "linear-gradient(90deg, #1a1a1a, #888)",
-        transform: inView ? "scaleX(1)" : "scaleX(0)",
-        transformOrigin: "left",
-        transition: "transform 1s ease-out",
-        transitionDelay: `${index * 80 + 400}ms`,
-      }} />
+      {/* Bold left border accent */}
+      <div
+        style={{ transitionDelay: `${index * 60 + 250}ms` }}
+        className={[
+          "absolute left-0 top-0 w-1 bg-neutral-950 transition-all duration-600 origin-top",
+          inView ? "h-full" : "h-0",
+        ].join(" ")}
+      />
 
-      <div className="p-8 md:p-12">
-        {/* Header */}
-        <div className="flex items-center gap-4 mb-8">
-          <div
-            className="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl flex-shrink-0"
-            style={{
-              background: "#f4f2ed",
-              border: "1.5px solid #e0ddd8",
-              transform: inView ? "rotate(0deg) scale(1)" : "rotate(-15deg) scale(0.7)",
-              opacity: inView ? 1 : 0,
-              transition: "all 0.7s cubic-bezier(0.34,1.56,0.64,1)",
-              transitionDelay: `${index * 80 + 300}ms`,
-            }}
-          >
-            {chapter.emoji}
-          </div>
-          <div>
-            {/* <p
-              className="text-xs font-bold tracking-[0.2em] uppercase mb-0.5"
-              style={{ color: "#555", fontFamily: "'DM Sans', sans-serif" }}
+      <div className="pl-8 pr-6 sm:pl-12 sm:pr-10 lg:pl-16 lg:pr-14 xl:pl-24 xl:pr-20 py-12 lg:py-16 xl:py-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16 xl:gap-24 items-start">
+
+          {/* Title column */}
+          <div className={`flex flex-col gap-4 ${isEven ? "md:order-1" : "md:order-2"}`}>
+            <span
+              style={{ transitionDelay: `${index * 60 + 100}ms` }}
+              className={[
+                "font-fraunces text-8xl lg:text-9xl font-black text-neutral-100 leading-none select-none",
+                "transition-all duration-500",
+                inView ? "opacity-100" : "opacity-0",
+              ].join(" ")}
             >
-              Chapter {chapter.num}
-            </p> */}
+              {chapter.number}
+            </span>
+
             <h3
-              className="text-3xl md:text-4xl font-black leading-tight"
-              style={{
-                fontFamily: "'Fraunces', Georgia, serif",
-                color: "#1a1a2e",
-                transform: inView ? "translateX(0)" : "translateX(-20px)",
-                opacity: inView ? 1 : 0,
-                transition: "all 0.7s ease-out",
-                transitionDelay: `${index * 80 + 250}ms`,
-              }}
+              style={{ transitionDelay: `${index * 60 + 160}ms` }}
+              className={[
+                "font-fraunces text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black leading-[1.0] text-neutral-950 -mt-6",
+                "transition-all duration-500",
+                inView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-3",
+              ].join(" ")}
             >
               {chapter.title}
             </h3>
-          </div>
-        </div>
 
-        {/* Body */}
-        <p
-          className="text-base md:text-lg leading-relaxed mb-8"
-          style={{
-            color: "#4a4a6a",
-            fontFamily: "'DM Sans', sans-serif",
-            fontWeight: 400,
-            transform: inView ? "translateY(0)" : "translateY(16px)",
-            opacity: inView ? 1 : 0,
-            transition: "all 0.7s ease-out",
-            transitionDelay: `${index * 80 + 350}ms`,
-          }}
-        >
-          {chapter.body}
-        </p>
-
-        {/* Quote */}
-        {chapter.quote && (
-          <div
-            className="relative rounded-2xl p-6 mb-2"
-            style={{
-              background: "#f7f5f0",
-              border: "1px solid #e0ddd8",
-              transform: inView ? "translateX(0)" : "translateX(-24px)",
-              opacity: inView ? 1 : 0,
-              transition: "all 0.8s cubic-bezier(0.22,1,0.36,1)",
-              transitionDelay: `${index * 80 + 500}ms`,
-            }}
-          >
             <div
-              className="absolute top-3 left-5 text-5xl leading-none select-none"
-              style={{ color: "#ccc", fontFamily: "Georgia, serif" }}
-            >"</div>
+              style={{ transitionDelay: `${index * 60 + 350}ms` }}
+              className={[
+                "h-[3px] w-14 bg-neutral-950 origin-left transition-all duration-600",
+                inView ? "scale-x-100 opacity-100" : "scale-x-0 opacity-0",
+              ].join(" ")}
+            />
+          </div>
+
+          {/* Content column */}
+          <div className={`flex flex-col gap-6 ${isEven ? "md:order-2" : "md:order-1"}`}>
             <p
-              className="italic text-base md:text-lg leading-relaxed pt-4 pl-4"
-              style={{ color: "#3a3a5a", fontFamily: "'Fraunces', Georgia, serif", fontWeight: 300 }}
+              style={{ transitionDelay: `${index * 60 + 240}ms` }}
+              className={[
+                "font-dm text-xl md:text-2xl lg:text-3xl leading-[1.65] text-neutral-900 font-normal",
+                "transition-all duration-500",
+                inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4",
+              ].join(" ")}
             >
-              {chapter.quote}
+              {chapter.body}
             </p>
-          </div>
-        )}
 
-        {/* Grid */}
-        {chapter.grid && (
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-            {chapter.grid.map((item, i) => (
-              <RejectionCard key={i} item={item} i={i} inView={inView} />
-            ))}
+            {chapter.grid && (
+              <div
+                style={{ transitionDelay: `${index * 60 + 300}ms` }}
+                className={[
+                  "grid grid-cols-2 lg:grid-cols-3 gap-3 transition-opacity duration-400",
+                  inView ? "opacity-100" : "opacity-0",
+                ].join(" ")}
+              >
+                {chapter.grid.map((item, i) => (
+                  <RejectionCard key={i} item={item} i={i} inView={inView} />
+                ))}
+              </div>
+            )}
           </div>
-        )}
 
-        {/* Highlight */}
-        {chapter.highlight && (
-          <div
-            className="inline-flex items-center ml-8 gap-3 rounded-full px-6 py-3 mt-2"
-            style={{
-              background: "#f4f2ed",
-              border: "1.5px solid #d8d4cc",
-              transform: inView ? "scale(1)" : "scale(0.85)",
-              opacity: inView ? 1 : 0,
-              transition: "all 0.7s cubic-bezier(0.34,1.56,0.64,1)",
-              transitionDelay: `${index * 80 + 500}ms`,
-            }}
-          >
-         
-            <p className="text-sm font-semibold ml-8 " style={{ color: "#333", fontFamily: "'DM Sans', sans-serif",textAlign:'text-center' }}>
-              {chapter.highlight}
-            </p>
-          </div>
-        )}
+        </div>
       </div>
     </div>
   );
 }
 
-/* ── CTA ── */
 function CtaBlock() {
-  const [ref, inView] = useInView(0.2);
+  const [ref, inView] = useInView(0.12);
   const [hovered, setHovered] = useState(false);
   return (
     <div
       ref={ref}
-      className="rounded-3xl p-10 text-center mt-6"
-      style={{
-        background: "linear-gradient(135deg, #0a0a0a 0%, #1e1e2e 100%)",
-        transform: inView ? "translateY(0) scale(1)" : "translateY(40px) scale(0.96)",
-        opacity: inView ? 1 : 0,
-        transition: "all 0.9s cubic-bezier(0.22,1,0.36,1)",
-      }}
+      className={[
+        "rounded-3xl overflow-hidden mt-4 bg-neutral-950 transition-all duration-500",
+        inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6",
+      ].join(" ")}
     >
-      <div className="text-4xl mb-4" style={{ display: "inline-block", animation: "spinSlow 8s linear infinite" }}>🌿</div>
-      <h3
-        className="text-3xl md:text-4xl font-black text-white mb-3"
-        style={{ fontFamily: "'Fraunces', Georgia, serif" }}
-      >
-        This is <span className="shimmer-mono italic">Esvaya.</span>
-      </h3>
-      <p className="text-neutral-400 text-base mb-8 max-w-sm mx-auto" style={{ fontFamily: "'DM Sans', sans-serif" }}>
-        Sensory wellness for people who already know what they need — they just need it to work.
-      </p>
-      <button
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
-        className="rounded-2xl px-8 py-4 text-sm font-bold tracking-wide"
-        style={{
-          fontFamily: "'DM Sans', sans-serif",
-          background: hovered ? "linear-gradient(135deg, #555, #222)" : "linear-gradient(135deg, #333, #111)",
-          color: "white",
-          transform: hovered ? "scale(1.05) translateY(-2px)" : "scale(1)",
-          boxShadow: hovered ? "0 12px 32px rgba(0,0,0,0.35)" : "0 4px 12px rgba(0,0,0,0.2)",
-          border: "none",
-          cursor: "pointer",
-          transition: "all 0.3s ease",
-        }}
-      >
-        Explore Our Products →
-      </button>
+      <div className="h-[3px] w-full bg-gradient-to-r from-neutral-800 via-neutral-500 to-neutral-800" />
+      <div className="px-8 sm:px-14 lg:px-24 xl:px-32 py-16 lg:py-24 text-center">
+        <p className="font-dm text-xs font-bold tracking-[0.35em] uppercase text-neutral-500 mb-6">
+          Sensory Wellness
+        </p>
+        <h3 className="font-fraunces text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black text-white mb-6 leading-[1.0]">
+          This is{" "}
+          <span className="shimmer-text italic">Esvaya.</span>
+        </h3>
+        <p className="font-dm text-neutral-400 text-lg lg:text-xl mb-10 max-w-xl mx-auto leading-relaxed">
+          For people who already know what they need — they just need it to work.
+        </p>
+        <button
+          onMouseEnter={() => setHovered(true)}
+          onMouseLeave={() => setHovered(false)}
+          className={[
+            "font-dm rounded-2xl px-10 py-5 text-sm font-bold tracking-widest uppercase cursor-pointer transition-all duration-300",
+            hovered
+              ? "bg-neutral-200 text-neutral-950 scale-105 shadow-2xl"
+              : "bg-white text-neutral-950 scale-100",
+          ].join(" ")}
+        >
+          Explore Products →
+        </button>
+      </div>
     </div>
   );
 }
 
-/* ── Main ── */
 export default function EsvayaStory() {
   return (
-    <div
-      className="min-h-screen relative overflow-x-hidden"
-      style={{ background: "linear-gradient(160deg,#fdfcf9 0%,#f9f6f0 50%,#fdfcf9 100%)", fontFamily: "'DM Sans', sans-serif" }}
-    >
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,900;1,9..144,300;1,9..144,400&family=DM+Sans:wght@300;400;500;600;700&display=swap');
-
-        * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; box-sizing: border-box; }
-
-        @keyframes heroFadeUp  { from{opacity:0;transform:translateY(40px)} to{opacity:1;transform:translateY(0)} }
-        @keyframes shimmerMono {
-          0%   { background-position: -300% center; }
-          100% { background-position:  300% center; }
-        }
-        @keyframes pulseRing {
-          0%   { transform:scale(1);   opacity:0.7; }
-          100% { transform:scale(2.4); opacity:0;   }
-        }
-        @keyframes waveBar {
-          0%,100% { transform:scaleY(0.4); }
-          50%     { transform:scaleY(1);   }
-        }
-        @keyframes spinSlow {
-          from { transform:rotate(0deg); }
-          to   { transform:rotate(360deg); }
-        }
-        @keyframes floatOrb1 {
-          0%,100% { transform:translate(0,0) scale(1); }
-          40%     { transform:translate(22px,-28px) scale(1.06); }
-          70%     { transform:translate(-14px,14px) scale(0.96); }
-        }
-        @keyframes floatOrb2 {
-          0%,100% { transform:translate(0,0); }
-          50%     { transform:translate(30px,-18px); }
-        }
-
-        .shimmer-mono {
-          background: linear-gradient(90deg,#111 0%,#777 25%,#111 50%,#999 75%,#111 100%);
-          background-size:300% auto;
-          -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
-          animation: shimmerMono 5s linear infinite;
-        }
-
-        .h1 { animation: heroFadeUp 0.85s ease-out 0.05s both; }
-        .h2 { animation: heroFadeUp 0.85s ease-out 0.25s both; }
-        .h3 { animation: heroFadeUp 0.85s ease-out 0.45s both; }
-        .h4 { animation: heroFadeUp 0.85s ease-out 0.65s both; }
-
-        .wave-bar               { animation: waveBar 1.2s ease-in-out infinite; }
-        .wave-bar:nth-child(2)  { animation-delay:0.12s; }
-        .wave-bar:nth-child(3)  { animation-delay:0.24s; }
-        .wave-bar:nth-child(4)  { animation-delay:0.36s; }
-        .wave-bar:nth-child(5)  { animation-delay:0.48s; }
-        .wave-bar:nth-child(6)  { animation-delay:0.60s; }
-        .wave-bar:nth-child(7)  { animation-delay:0.72s; }
-        .wave-bar:nth-child(8)  { animation-delay:0.84s; }
-        .wave-bar:nth-child(9)  { animation-delay:0.96s; }
-        .wave-bar:nth-child(10) { animation-delay:1.08s; }
-
-        .orb1 { animation: floatOrb1 9s  ease-in-out infinite; }
-        .orb2 { animation: floatOrb2 12s ease-in-out infinite; }
-        .orb3 { animation: floatOrb1 15s ease-in-out infinite reverse; }
-      `}</style>
-
-      {/* Background orbs — neutral */}
-      {/* <div className="orb1 absolute pointer-events-none rounded-full"
-        style={{ width:320, height:320, background:"radial-gradient(circle,rgba(0,0,0,0.05) 0%,transparent 70%)", top:-90, right:-90 }} />
-      <div className="orb2 absolute pointer-events-none rounded-full"
-        style={{ width:220, height:220, background:"radial-gradient(circle,rgba(0,0,0,0.04) 0%,transparent 70%)", bottom:"12%", left:-60 }} />
-      <div className="orb3 absolute pointer-events-none rounded-full"
-        style={{ width:180, height:180, background:"radial-gradient(circle,rgba(0,0,0,0.04) 0%,transparent 70%)", top:"38%", right:"4%" }} /> */}
+    <div className="min-h-screen w-full bg-[#f9f7f3] font-dm overflow-x-hidden">
 
       {/* ── HERO ── */}
-      <section className="relative pt-24 pb-20 px-6 text-center max-w-4xl mx-auto">
-
-        {/* Our Story pill — white on black */}
-        <div
-          className="h1 inline-flex items-center gap-2 rounded-full px-5 py-2 mb-10"
-          style={{ background: "#111", border: "1.5px solid #333" }}
-        >
-          <span className="relative flex h-2 w-2">
+      <section className="w-full px-5 sm:px-8 md:px-12 lg:px-16 xl:px-24 2xl:px-32 pt-16 sm:pt-20 lg:pt-28 pb-14 lg:pb-20">
+    <div className="flex items-center justify-center w-full">
+  <div className="inline-flex items-center justify-center px-8 py-3.5 bg-black border-[2.5px] border-black rounded-lg">
+    <h2 className="font-dm text-[25px] font-bold tracking-[0.28em] uppercase text-white m-0">
+      Origin of Esvaya
+    </h2>
+  </div>
+</div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-14 xl:gap-28 items-start mt-20">
+  
+          {/* Left */}
+          <div className="md:sticky md:top-8">
             
-          </span>
-          <span
-            className="text-5xl  font-bold tracking-[0.25em] "
-            style={{ color: "#fff", fontFamily: "'DM Sans', sans-serif" }}
-          >
-            Origin of  Esvaya
-          </span>
+
+            <h1 className="fade-up-2 font-fraunces text-6xl sm:text-7xl lg:text-8xl xl:text-[9rem] font-black leading-[1.0] text-neutral-950">
+              Built from
+              <br />
+              <em className="not-italic font-light italic">experience.</em>
+            </h1>
+
+            <div className="fade-up-3 mt-8 flex items-center gap-4">
+              <div className="w-10 h-[3px] bg-neutral-950" />
+              <span className="font-dm text-xs tracking-[0.35em] uppercase text-neutral-500 font-bold">Our Story</span>
+            </div>
+          </div>
+
+          {/* Right */}
+          <div className="fade-up-3 pt-0 md:pt-4">
+            <p className="font-dm text-xl md:text-2xl lg:text-3xl text-neutral-900 leading-[1.6] font-normal">
+              It started with a feeling that most urban achievers know but nobody names.
+            </p>
+            <p className="font-dm text-lg md:text-xl lg:text-2xl text-neutral-700 leading-[1.7] mt-6 font-normal">
+              Not burnout – burnout sounds dramatic – but something quieter. The 3AM
+              wake-up with a mind fixed on next morning's meeting. The 3PM crash that
+              no amount of coffee could fix, or the anxiety that never allowed to settle.
+              The morning alarm that felt like an accusation, because cortisol levels
+              were permanently elevated.
+            </p>
+
+            <div className="fade-up-4 mt-10 pl-6 border-l-4 border-neutral-950">
+              <p className="font-fraunces italic text-2xl lg:text-3xl xl:text-4xl text-neutral-950 font-normal leading-snug">
+                "Something had to change. Not lifestyle. The signal."
+              </p>
+            </div>
+          </div>
+
         </div>
-
-        {/* Headline */}
-        <h1 className="h2 mb-4 leading-[1.05]" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>
-          <span className="block text-5xl md:text-7xl font-black" style={{ color: "#1a1a2e" ,marginRight:'1rem' }}>
-            Built from experience.
-          </span>
-          
-        </h1>
-
-        {/* Subtext */}
-       <p
-  className="text-lg md:text-xl text-neutral-500 leading-8 mt-6 mb-10 text-justify"
-  style={{
-    fontFamily: "'DM Sans', sans-serif",
-    fontWeight: 400,
-    wordSpacing: "6px"
-  }}
->
-  It started with a feeling that most urban achievers know but nobody names.
-  <br />
-  Not burnout – burnout sounds dramatic but something quieter. The 3AM wake-up
-  with a mind focused on next morning meeting. The 3 PM crash that no amount of
-  coffee could fix or the anxiety that never allowed to settle. The morning
-  alarm that felt like an accusation, because cortisol level was permanently
-  elevated.
-</p>
-
-       
       </section>
+
+      {/* Divider */}
+      <div className="w-full px-5 sm:px-8 md:px-12 lg:px-16 xl:px-24 2xl:px-32 mb-10">
+        <div className="flex items-center gap-6">
+          <div className="flex-1 h-px bg-neutral-300" />
+          <span className="font-dm text-xs tracking-[0.35em] uppercase text-neutral-500 font-bold whitespace-nowrap">The Journey</span>
+          <div className="flex-1 h-px bg-neutral-300" />
+        </div>
+      </div>
 
       {/* ── CHAPTERS ── */}
-      <section className="max-w-4xl mx-auto px-6 pb-32">
-        {chapters.map((ch, i) => <ChapterCard key={i} chapter={ch} index={i} />)}
-        {/* <CtaBlock /> */}
+      <section className="w-full px-5 sm:px-8 md:px-12 lg:px-16 xl:px-24 2xl:px-32 pb-32">
+        {chapters.map((ch, i) => (
+          <ChapterCard key={i} chapter={ch} index={i} />
+        ))}
+    
       </section>
+
     </div>
   );
 }
