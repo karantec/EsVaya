@@ -252,7 +252,7 @@ export default function EsvayaStory() {
       {/* ── HERO ── */}
       <section className="w-full px-5 sm:px-8 md:px-12 lg:px-16 xl:px-24 2xl:px-32 pt-16 sm:pt-20 lg:pt-28 pb-14 lg:pb-20">
     <div className="flex items-center justify-center w-full">
-  <div className="inline-flex items-center justify-center px-8 py-3.5 bg-black border-[2.5px] border-black rounded-lg">
+  <div className="inline-flex items-center justify-center mt-14 px-8 py-3.5 bg-black border-[2.5px] border-black rounded-lg">
     <h2 className="font-dm text-[25px] font-bold tracking-[0.28em] uppercase text-white m-0">
       Origin of Esvaya
     </h2>
