@@ -41,22 +41,13 @@ export default function Navbar() {
 
         {/* Logo */}
         <NavLink to="/" className="no-underline text-white font-bold">
-   <div className="flex flex-col items-start justify-start">
-  <img 
-    src="https://res.cloudinary.com/dgfxvpxbr/image/upload/v1773755552/logo_db3ays.png" 
-    alt="ESVAYA Sensory Wellness House"
-    className="h-20 w-auto mix-blend-mode:color-dodge" // Blends the PNG on a black bg
-    style={{
-      height: '60px', // Force height for sharp rendering
-      maxWidth: '250px', 
-      objectFit: 'contain' // Prevents stretching
-    }}
-  />
+ <div className="flex items-center gap-3 font-bold text-4xl">
+  Esvaya
 </div>
         </NavLink>
 
         {/* Desktop links */}
-        <div className="hidden md:flex items-center gap-10">
+        <div className="hidden md:flex items-center gap-10 ">
           {NAV_LINKS.map(({ label, to }) => (
             <NavLink
               key={to}

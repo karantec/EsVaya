@@ -13,16 +13,9 @@ const EsvayaPolicies = () => {
   return (
     <div className="min-h-screen bg-white text-zinc-900 font-sans selection:bg-zinc-900 selection:text-white">
       {/* Header */}
-      <header className="border-b border-zinc-200 sticky top-0 bg-white/80 backdrop-blur-md z-10">
-        <div className="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
-          <h1 className="text-xl font-bold tracking-tighter uppercase">Esvaya Wellness</h1>
-          <a href="mailto:support@esvaya.com" className="text-sm border border-zinc-900 px-4 py-1 hover:bg-zinc-900 hover:text-white transition-colors">
-            Support
-          </a>
-        </div>
-      </header>
+      
 
-      <main className="max-w-5xl mx-auto px-6 py-12">
+      <main className="max-w-5xl mx-auto px-6 py-36">
         <div className="flex flex-col md:flex-row gap-12">
           
           {/* Sidebar Navigation */}
@@ -165,18 +158,7 @@ const EsvayaPolicies = () => {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-zinc-200 mt-20 py-12 bg-zinc-50">
-        <div className="max-w-5xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="text-center md:text-left">
-            <p className="font-bold text-sm tracking-widest uppercase">Esvaya Wellness Pvt. Ltd.</p>
-            <p className="text-xs text-zinc-500 mt-1">Your nervous system, finally heard.</p>
-          </div>
-          <div className="flex items-center gap-2 text-xs text-zinc-400">
-            <MapPin size={12} /> New Delhi, India
-          </div>
-          <p className="text-xs text-zinc-400 italic">© 2025 Esvaya Wellness. All Rights Reserved.</p>
-        </div>
-      </footer>
+     
     </div>
   );
 };
