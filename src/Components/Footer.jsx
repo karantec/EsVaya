@@ -81,7 +81,7 @@ export default function Footer() {
         <div className="flex flex-col gap-6">
          <div className="flex flex-col items-start justify-start">
   <img 
-    src="https://res.cloudinary.com/dgfxvpxbr/image/upload/v1773755552/logo_db3ays.png" 
+    src="https://res.cloudinary.com/dgfxvpxbr/image/upload/v1773756722/WhatsApp_Image_2026-03-17_at_7.41.15_PM_bfjx1m.jpg" 
     alt="ESVAYA Sensory Wellness House"
     className="h-20 w-auto mix-blend-mode:color-dodge" // Blends the PNG on a black bg
     style={{
