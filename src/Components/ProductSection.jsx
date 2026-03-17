@@ -199,7 +199,7 @@ function CenterImage() {
         <img
           src="https://res.cloudinary.com/dgfxvpxbr/image/upload/v1773753065/WhatsApp_Image_2026-03-17_at_8.57.25_AM_hpzpd4.jpg"
           alt="Esvaya Ritual Kit"
-          className="w-[96] h-[450px] object-cover"
+          className="w-full h-[300px] object-fill"
         />
         {/* Subtle overlay for depth */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
