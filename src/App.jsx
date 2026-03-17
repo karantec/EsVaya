@@ -13,6 +13,10 @@ import EsvayaSection from "./Components/EsvayaSection";
 import Ritual from "./Components/Ritual";
 import BlogCarouselDetail from "./Components/BlogSection";
 
+import BlogDetail from "./Components/BlogDetail";
+import EsvayaPolicies from "./Components/EssayPolicies";
+import EsvayaFAQ from "./Components/Faq";
+
 const App = () => {
   return (
     <>
@@ -34,9 +38,13 @@ const App = () => {
             </>
           }
         />
+        <Route path="/journal/:slug" element={<BlogDetail />} />
         <Route path="/blog" element={<BlogCarouselDetail />} />
         <Route path="/thearchitecture" element={<EsvayaProductSection />} />
         <Route path="/story" element={<EsvayaStory />} />
+        <Route path="/faq" element={<EsvayaFAQ />} />
+  <Route path="/policies" element={<EsvayaPolicies />} />
+        {/* <Route path="/postBlogs" element={<BlogEditor />} /> */}
         <Route path="/ritual" element={<Ritual />} />
         {/* <Route path="/blog" element={<BlogCarousel />} /> */}
 

@@ -267,7 +267,7 @@ export default function EsvayaStory() {
             <h1 className="fade-up-2 font-fraunces text-6xl sm:text-7xl lg:text-8xl xl:text-[9rem] font-black leading-[1.0] text-neutral-950">
               Built from
               <br />
-              <em className="not-italic font-light italic">experience.</em>
+              <em className="font-light italic">Experience.</em>
             </h1>
 
             

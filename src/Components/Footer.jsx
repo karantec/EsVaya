@@ -2,10 +2,10 @@
 import { useState } from 'react'
 
 const navLinks = [
-  { label: 'Products', href: '#products' },
-  { label: 'Our Story', href: '#our-story' },
-  { label: 'Rituals', href: '#rituals' },
-  { label: 'Journal', href: '#journal' },
+  { label: 'Products', href: '/thearchitecture' },
+  { label: 'Our Story', href: '/story' },
+  { label: 'Rituals', href: '/ritual' },
+  { label: 'Journal', href: '/blog' },
 ]
 
 const socialLinks = [
@@ -38,6 +38,26 @@ const socialLinks = [
       </svg>
     ),
   },
+  {
+  label: 'FAQ',
+  href: '/faq', // Adjust to your actual FAQ route
+  icon: (
+    <svg 
+      width="16" 
+      height="16" 
+      viewBox="0 0 24 24" 
+      fill="none" 
+      stroke="currentColor" 
+      strokeWidth="1.5" 
+      strokeLinecap="round" 
+      strokeLinejoin="round"
+    >
+      <circle cx="12" cy="12" r="10" />
+      <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+      <line x1="12" y1="17" x2="12.01" y2="17" />
+    </svg>
+  ),
+},
 ]
 
 export default function Footer() {
@@ -59,17 +79,18 @@ export default function Footer() {
 
         {/* Column 1 — Brand */}
         <div className="flex flex-col gap-6">
-          <div>
-            <p
-              className="font-bold tracking-widest text-gray-100 mb-1"
-              style={{ fontFamily: 'Playfair Display, serif', fontSize: 22, letterSpacing: '0.35em' }}
-            >
-              ESVAYA
-            </p>
-            <p className="text-gray-600 uppercase tracking-widest" style={{ fontSize: 8 }}>
-              Sensory Wellness House
-            </p>
-          </div>
+         <div className="flex flex-col items-start justify-start">
+  <img 
+    src="https://res.cloudinary.com/dgfxvpxbr/image/upload/v1773755552/logo_db3ays.png" 
+    alt="ESVAYA Sensory Wellness House"
+    className="h-20 w-auto mix-blend-mode:color-dodge" // Blends the PNG on a black bg
+    style={{
+      height: '80px', // Force height for sharp rendering
+      maxWidth: '250px', 
+      objectFit: 'contain' // Prevents stretching
+    }}
+  />
+</div>
 
           <p
             className="text-gray-500 leading-relaxed italic"
@@ -175,7 +196,7 @@ export default function Footer() {
           {['Privacy', 'Terms', 'Refunds'].map(item => (
             <a
               key={item}
-              href={`#${item.toLowerCase()}`}
+              href={`/policies`}
               className="text-gray-700 hover:text-gray-400 uppercase tracking-widest text-xs transition-colors duration-200"
             >
               {item}

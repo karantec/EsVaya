@@ -197,9 +197,9 @@ function CenterImage() {
       <div className="relative w-64 flex-shrink-0 rounded-sm overflow-hidden border border-white/[0.08]"
        >
         <img
-          src="https://res.cloudinary.com/dg3djpzq2/image/upload/v1773636175/WhatsApp_Image_2026-03-16_at_10.11.27_AM_djlnoe.jpg"
+          src="https://res.cloudinary.com/dgfxvpxbr/image/upload/v1773753065/WhatsApp_Image_2026-03-17_at_8.57.25_AM_hpzpd4.jpg"
           alt="Esvaya Ritual Kit"
-          className="w-[96] h-[300px] object-cover"
+          className="w-[96] h-[450px] object-cover"
         />
         {/* Subtle overlay for depth */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
@@ -218,7 +218,7 @@ function ArchitectureSection() {
         Two Products.<br />30 days Ritual.<br />One System
       </h2>
       <p className="text-white text-xl font-semibold tracking-widest leading-relaxed py-8">
-        Exclusive Access to Founder's Edition<br />The Esvaya Ritual Kit
+        Exclusive Access to Founder's Edition<br />
       </p>
     </section>
   );

@@ -4,13 +4,7 @@ const cards = [
   {
     icon: "✦",
     title: "Natural",
-    body: (
-      <>
-        Every ingredient in Esvaya is sourced from Indian soil – chosen for
-        what it does to your body, and not how it smells. No synthetics. No
-        fillers. This is functional scent.
-      </>
-    ),
+    body: "Every ingredient in Esvaya is sourced from Indian soil – chosen for what it does to your body, and not how it smells. No synthetics. No fillers. This is functional scent.",
   },
   {
     icon: "◎",
@@ -20,20 +14,7 @@ const cards = [
   {
     icon: "◇",
     title: "Regulation",
-    body: (
-      <>
-        A ritual is intentional whereas a routine is mechanical. Esvaya turns
-        your{" "}
-        <a
-          href="/ritual"
-          className="text-white/65 underline underline-offset-3 decoration-white/20"
-        >
-          two minute
-        </a>{" "}
-        rituals into a signal that your nervous system recognizes to start doing
-        the work before you've even consciously begun.
-      </>
-    ),
+    body: "A ritual is intentional whereas a routine is mechanical. Esvaya turns your two minute rituals into a signal that your nervous system recognizes to start doing the work before you've even consciously begun.",
   },
 ];
 
@@ -41,19 +22,22 @@ const navItems = [
   {
     tag: "Architecture",
     title: "The Architecture",
-    sub: "How it's built",
+    sub: "Designed around a single insight",
+    desc: "Your nervous system responds to signals. Learn how every element of the kit is architected to deliver them.",
     href: "/architecture",
   },
   {
     tag: "Origin",
     title: "Origin of Esvaya",
-    sub: "The story behind it",
+    sub: "It started with a feeling",
+    desc: "Not in a lab — but with the quiet depletion of someone performing fine at everything, and present in none of it.",
     href: "/our-story",
   },
   {
     tag: "Ritual",
     title: "The Ritual",
     sub: "Your two minutes",
+    desc: "Specific, repeated, consistent signals. You are not just using a product — you are teaching your nervous system.",
     href: "/ritual",
   },
 ];
@@ -68,14 +52,36 @@ export default function EsvayaSection() {
         {/* subtle radial glow */}
         <div className="absolute -top-32 -right-32 w-[500px] h-[500px] rounded-full bg-white/[0.02] pointer-events-none" />
 
-        {/* Top row */}
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-center mb-8 sm:mb-12 pb-6 border-b border-white/[0.06]">
-  <p className="text-[25px] font-light text-white leading-[1.8] tracking-wide max-w-8xl text-center mx-auto">
-    Esvaya believes emotional wellness should be preventive, accessible, and integrated in your daily routine
-  </p>
-</div>
+        {/* ── Hero statement ── */}
+        <div className="mb-12 pb-10 border-b border-white/[0.06]">
+          {/* Eyebrow label */}
+          <p className="text-[20px] tracking-[.35em] uppercase text-white font-semibold mb-6 text-center">
+            Our belief
+          </p>
 
-        {/* Cards — 1 col mobile, 3 col desktop */}
+          {/* Main headline */}
+          <h2
+            style={{ fontFamily: "'Cormorant Garamond', serif" }}
+            className="text-center mx-auto max-w-5xl leading-[1.15] tracking-tight"
+          >
+            <span className=" text-[28px]  font-light italic text-white/90">
+            Esvaya believes emotional wellness should be preventive, accessible, and integrated in your daily routine
+            </span>
+           
+          </h2>
+
+          {/* Subtext */}
+         
+
+          {/* Thin divider accent */}
+          <div className="flex items-center justify-center gap-4 mt-8">
+            <div className="h-px w-12 bg-white/10" />
+            <div className="w-1 h-1 rounded-full bg-white/20" />
+            <div className="h-px w-12 bg-white/10" />
+          </div>
+        </div>
+
+        {/* Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-3">
           {cards.map((c, i) => (
             <div
@@ -85,22 +91,11 @@ export default function EsvayaSection() {
                 padding: "32px 24px 40px",
                 borderTop: "1px solid rgba(255,255,255,0.08)",
                 borderRight:
-                  i < 2
-                    ? "1px solid rgba(255,255,255,0.08)"
-                    : "none",
+                  i < 2 ? "1px solid rgba(255,255,255,0.08)" : "none",
               }}
             >
-              {/* On mobile remove right border */}
-              <style>{`
-                @media (max-width: 639px) {
-                  .card-border-right { border-right: none !important; }
-                }
-              `}</style>
-
-              {/* bottom shimmer on hover */}
               <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
 
-              {/* Icon centered */}
               <div className="flex justify-center mb-6">
                 <div className="w-8 h-8 rounded-full border border-white/[0.08] flex items-center justify-center text-[13px] text-white/20 group-hover:border-white/25 group-hover:text-white/50 transition-all duration-300">
                   {c.icon}
@@ -130,12 +125,11 @@ export default function EsvayaSection() {
           <span className="text-[28px] font-bold tracking-[.22em] uppercase text-black">
             Explore Esvaya
           </span>
-         
         </div>
 
-        {/* Nav items — stack on mobile, 3 col on desktop */}
-     <div className="grid grid-cols-1 sm:grid-cols-3 sm:divide-x mt-8 py-20 ml-14">
-          {navItems.map((item, i) => (
+        {/* Nav cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 mt-8 gap-5">
+          {navItems.map((item) => (
             <a
               key={item.title}
               href={item.href}
@@ -143,31 +137,37 @@ export default function EsvayaSection() {
                 e.preventDefault();
                 navigate(item.href);
               }}
-              className="group relative ml-14 flex flex-col overflow-hidden border-t-[1.5px] border-transparent  transition-all duration-250 py-6 pb-8 sm:pb-9 border-b border-neutral-100 sm:border-b-0"
-              style={{
-                paddingLeft: i !== 0 ? "0" : "0",
-              }}
+              className="group relative flex flex-col overflow-hidden rounded-2xl border border-neutral-200 bg-white hover:border-neutral-400 transition-all duration-300 p-7 pb-8 shadow-sm hover:shadow-md"
             >
-              {/* bg fill on hover */}
-              {/* <div className="absolute inset-0  scale-y-0 origin-bottom group-hover:scale-y-100 transition-transform duration-300 z-0" /> */}
-
-              <div className="relative z-10 flex items-center gap-3 mb-4">
-                <div className="w-7 h-7 rounded-full border  flex items-center justify-center text-xs text-black  group-hover:text-white  transition-all duration-250">
-                  ↗
-                </div>
-                <span className="text-[15px]  tracking-[.15em] uppercase text-black font-bold  transition-colors duration-250">
+              {/* Top row: tag + arrow */}
+              <div className="flex items-center justify-between mb-6">
+                <span className="text-[11px] tracking-[.2em] uppercase text-black font-semibold">
                   {item.tag}
                 </span>
+                <div className="w-7 h-7 rounded-full border border-neutral-200 flex items-center justify-center text-xs text-neutral-400 group-hover:bg-black group-hover:border-black group-hover:text-white transition-all duration-250">
+                  ↗
+                </div>
               </div>
 
+              {/* Title */}
               <span
                 style={{ fontFamily: "'Cormorant Garamond', serif" }}
-                className="relative z-10 text-[28px]  text-[#0d0d0d] font-bold tracking-tight leading-tight mb-1.5"
+                className="text-[30px] text-[#0d0d0d] font-bold tracking-tight leading-tight mb-2"
               >
                 {item.title}
               </span>
-              <span className="relative z-10 text-[13px]  text-black font-bold tracking-wide">
+
+              {/* Sub */}
+              <span className="text-[11px] uppercase tracking-[.15em] text-black font-semibold mb-4">
                 {item.sub}
+              </span>
+
+              {/* Animated divider */}
+              <div className="w-8 h-px bg-neutral-200 mb-4 group-hover:w-14 transition-all duration-300" />
+
+              {/* Description */}
+              <span className="text-[13px] text-black font-bold leading-relaxed font-normal">
+                {item.desc}
               </span>
             </a>
           ))}

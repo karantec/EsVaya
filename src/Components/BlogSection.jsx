@@ -1,123 +1,33 @@
-// BlogCarousel.jsx
-// Requires: Tailwind CSS v3+
-// Add to index.html:
-// <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
-
 import { useState, useEffect } from 'react'
-
-const POSTS = [
-  {
-    tag: 'Nervous System',
-    title: "Why your body doesn't know the workday is over",
-    excerpt: 'The lingering hum of cortisol long after you close the laptop — and what to do about it.',
-    date: 'Mar 2025',
-    read: '4 min',
-    accent: '#c8b8a0',
-  },
-  {
-    tag: 'Energy',
-    title: 'The 3PM crash is not a caffeine problem',
-    excerpt: 'Your cortisol system has been running since 9AM. The afternoon slump is a signal, not a weakness.',
-    date: 'Mar 2025',
-    read: '4 min',
-    accent: '#a0b8c8',
-  },
-  {
-    tag: 'Neuroscience',
-    title: 'The science of scent: why smell bypasses your brain',
-    excerpt: 'Every other sense waits at the gate. Scent walks straight to your emotional brain. Here is why.',
-    date: 'Feb 2025',
-    read: '6 min',
-    accent: '#b0a8c8',
-  },
-  {
-    tag: 'Habit Science',
-    title: 'Why 21 days is a lie (and what actually takes 30)',
-    excerpt: 'The most repeated claim in wellness is not backed by the research. Here is what actually is.',
-    date: 'Feb 2025',
-    read: '4 min',
-    accent: '#a8c0b0',
-  },
-  {
-    tag: 'Wellness',
-    title: 'The problem with meditation apps',
-    excerpt: 'Not an anti-meditation essay. An honest look at why the format fails a specific group of people.',
-    date: 'Jan 2025',
-    read: '4 min',
-    accent: '#c8a8a8',
-  },
-  {
-    tag: 'Ingredients',
-    title: 'Fragrance and functional scent are not the same thing',
-    excerpt: 'One is an aesthetic product. The other is biochemistry. Knowing the difference matters.',
-    date: 'Jan 2025',
-    read: '5 min',
-    accent: '#c0b8a0',
-  },
-  {
-    tag: 'Founder',
-    title: 'The normalisation of depletion',
-    excerpt: 'The sleeping commuters. The 11PM inbox checks. Nobody named it. We wanted to.',
-    date: 'Dec 2024',
-    read: '6 min',
-    accent: '#a8b8c0',
-  },
-  {
-    tag: 'Sourcing',
-    title: 'Soil to sense: why we source every ingredient from India',
-    excerpt: 'Indian land, Indian farmers, Indian knowledge — carried on Indian skin.',
-    date: 'Dec 2024',
-    read: '5 min',
-    accent: '#b8c0a8',
-  },
-  {
-    tag: 'Ritual',
-    title: 'What is a nervous system ritual?',
-    excerpt: 'The concept sounds like an Instagram caption. The mechanism is grounded in neuroscience.',
-    date: 'Nov 2024',
-    read: '5 min',
-    accent: '#c0a8b8',
-  },
-]
+import { Link } from 'react-router-dom'
+import { client } from '../sanityClient'
 
 const TEXTURES = [
-  (accent) => `
-    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-      <rect width="100%" height="100%" fill="#161616"/>
-      <circle cx="75%" cy="30%" r="90" fill="${accent}" opacity="0.09"/>
-      <circle cx="20%" cy="80%" r="60" fill="${accent}" opacity="0.06"/>
-      <line x1="0" y1="70%" x2="100%" y2="55%" stroke="${accent}" stroke-width="0.5" opacity="0.12"/>
-    </svg>
-  `,
-  (accent) => `
-    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-      <rect width="100%" height="100%" fill="#161616"/>
-      <rect x="12%" y="12%" width="76%" height="76%" rx="6" fill="none" stroke="${accent}" stroke-width="0.5" opacity="0.14"/>
-      <circle cx="50%" cy="50%" r="35" fill="${accent}" opacity="0.07"/>
-    </svg>
-  `,
-  (accent) => `
-    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-      <rect width="100%" height="100%" fill="#161616"/>
-      <path d="M0,80 Q80,20 160,80 T320,80" stroke="${accent}" stroke-width="0.6" fill="none" opacity="0.18" transform="translate(0,30)"/>
-      <circle cx="65%" cy="35%" r="50" fill="${accent}" opacity="0.07"/>
-    </svg>
-  `,
-  (accent) => `
-    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-      <rect width="100%" height="100%" fill="#161616"/>
-      <line x1="15%" y1="0" x2="85%" y2="100%" stroke="${accent}" stroke-width="0.5" opacity="0.12"/>
-      <line x1="85%" y1="0" x2="15%" y2="100%" stroke="${accent}" stroke-width="0.5" opacity="0.08"/>
-      <circle cx="50%" cy="50%" r="40" fill="${accent}" opacity="0.06"/>
-    </svg>
-  `,
+  (accent) => `<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><rect width="100%" height="100%" fill="#161616"/><circle cx="75%" cy="30%" r="90" fill="${accent}" opacity="0.09"/><circle cx="20%" cy="80%" r="60" fill="${accent}" opacity="0.06"/><line x1="0" y1="70%" x2="100%" y2="55%" stroke="${accent}" stroke-width="0.5" opacity="0.12"/></svg>`,
+  (accent) => `<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><rect width="100%" height="100%" fill="#161616"/><rect x="12%" y="12%" width="76%" height="76%" rx="6" fill="none" stroke="${accent}" stroke-width="0.5" opacity="0.14"/><circle cx="50%" cy="50%" r="35" fill="${accent}" opacity="0.07"/></svg>`,
+  (accent) => `<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><rect width="100%" height="100%" fill="#161616"/><path d="M0,80 Q80,20 160,80 T320,80" stroke="${accent}" stroke-width="0.6" fill="none" opacity="0.18" transform="translate(0,30)"/><circle cx="65%" cy="35%" r="50" fill="${accent}" opacity="0.07"/></svg>`,
+  (accent) => `<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><rect width="100%" height="100%" fill="#161616"/><line x1="15%" y1="0" x2="85%" y2="100%" stroke="${accent}" stroke-width="0.5" opacity="0.12"/><line x1="85%" y1="0" x2="15%" y2="100%" stroke="${accent}" stroke-width="0.5" opacity="0.08"/><circle cx="50%" cy="50%" r="40" fill="${accent}" opacity="0.06"/></svg>`
 ]
 
 function CardImage({ post, index }) {
-  const svgContent = TEXTURES[index % TEXTURES.length](post.accent)
+  // Logic: Use Sanity Main Image if it exists, otherwise use SVG texture
+  if (post.mainImage) {
+    return (
+      <div className="w-full h-[240px] relative overflow-hidden rounded-t-2xl flex-shrink-0 border-b border-white/5">
+        <img 
+          src={post.mainImage} 
+          alt={post.title} 
+          className="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 ease-in-out scale-105 group-hover:scale-100"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#141414] via-transparent to-transparent opacity-40" />
+      </div>
+    )
+  }
+
+  const svgContent = TEXTURES[index % TEXTURES.length](post.accent || '#ffffff')
   return (
     <div
-      className="w-full h-[220px] relative overflow-hidden rounded-t-2xl flex-shrink-0"
+      className="w-full h-[240px] relative overflow-hidden rounded-t-2xl flex-shrink-0 border-b border-white/5"
       dangerouslySetInnerHTML={{ __html: svgContent }}
     />
   )
@@ -125,96 +35,77 @@ function CardImage({ post, index }) {
 
 function BlogCard({ post, index }) {
   return (
-    <article
-      className="
-        flex-shrink-0 flex flex-col
-        bg-[#141414] rounded-2xl overflow-hidden
-        border border-white/[0.07]
-        transition-all duration-500 ease-out
-        hover:border-white/20 hover:-translate-y-2 hover:shadow-2xl hover:shadow-black/60
-        group cursor-pointer
-      "
-    >
-      <CardImage post={post} index={index} />
+    <Link to={`/journal/${post.slug}`} className="group h-full block">
+      <article className="flex-shrink-0 flex flex-col bg-[#141414] rounded-2xl overflow-hidden border border-white/[0.07] transition-all duration-500 ease-out hover:border-white/20 hover:-translate-y-2 hover:shadow-2xl hover:shadow-black/80 cursor-pointer h-full">
+        
+        <CardImage post={post} index={index} />
+        
+        <div className="flex flex-col flex-1 px-7 pt-7 pb-8 gap-4">
+          <div className="flex items-center justify-between">
+            <span className="text-[10px] font-medium tracking-[0.2em] uppercase px-3 py-1.5 rounded-full bg-white/[0.03] text-white/50 border border-white/5 font-['DM_Sans']">
+              {post.tag}
+            </span>
+            <span className="text-[11px] text-white/30 font-['DM_Sans'] uppercase tracking-widest">{post.read} read</span>
+          </div>
 
-      <div className="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent mx-5" />
+          <h3 className="text-[22px] font-semibold text-white/90 leading-[1.3] tracking-tight font-['Playfair_Display'] group-hover:text-white transition-colors">
+            {post.title}
+          </h3>
 
-      <div className="flex flex-col flex-1 px-6 pt-6 pb-7 gap-3.5">
+          <p className="text-[15px] italic text-white/40 leading-[1.6] flex-1 font-['Playfair_Display'] line-clamp-2">
+            {post.excerpt}
+          </p>
 
-        <div className="flex items-center justify-between">
-          <span
-            className="text-[11px] font-medium tracking-[0.14em] uppercase px-3 py-1.5 rounded-full bg-white/[0.06] text-white border border-white/[0.07]"
-            style={{ fontFamily: 'DM Sans, sans-serif' }}
-          >
-            {post.tag}
-          </span>
-          <span
-            className="text-[12px] text-white"
-            style={{ fontFamily: 'DM Sans, sans-serif' }}
-          >
-            {post.read} read
-          </span>
-        </div>
-
-        <h3
-          className="text-[20px] font-semibold text-white leading-[1.35] tracking-[-0.01em] group-hover:text-white transition-colors duration-300"
-          style={{ fontFamily: 'Playfair Display, Georgia, serif' }}
-        >
-          {post.title}
-        </h3>
-
-        <p
-          className="text-[14px] italic text-white leading-[1.75] flex-1 group-hover:text-white/50 transition-colors duration-300"
-          style={{ fontFamily: 'Playfair Display, Georgia, serif' }}
-        >
-          {post.excerpt}
-        </p>
-
-        <div className="flex items-center justify-between pt-4 mt-2 border-t border-white/[0.06]">
-          <span
-            className="text-[12px] text-white"
-            style={{ fontFamily: 'DM Sans, sans-serif' }}
-          >
-            {post.date}
-          </span>
-          <div className="
-            w-[34px] h-[34px] rounded-full flex items-center justify-center
-            border border-white bg-transparent
-            transition-all duration-300
-            group-hover:bg-white group-hover:border-white
-          ">
-            <svg
-              width="13" height="13" viewBox="0 0 13 13" fill="none"
-              className="transition-transform duration-300 group-hover:translate-x-px group-hover:-translate-y-px"
-            >
-              <path
-                d="M2.5 10.5L10.5 2.5M10.5 2.5H5.5M10.5 2.5V7.5"
-                className="group-hover:[stroke:#000] transition-colors duration-300"
-                stroke="rgba(255,255,255,0.4)"
-                strokeWidth="1.3"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+          <div className="flex items-center justify-between pt-5 mt-2 border-t border-white/[0.05]">
+            <span className="text-[11px] text-white/20 uppercase tracking-tighter font-['DM_Sans']">{post.date}</span>
+            <div className="w-[36px] h-[36px] rounded-full flex items-center justify-center border border-white/10 group-hover:bg-white group-hover:border-white transition-all duration-500">
+              <svg width="12" height="12" viewBox="0 0 13 13" fill="none">
+                <path d="M2.5 10.5L10.5 2.5M10.5 2.5H5.5M10.5 2.5V7.5" 
+                      className="group-hover:stroke-black stroke-white/30 transition-colors" 
+                      strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </div>
           </div>
         </div>
-
-      </div>
-    </article>
+      </article>
+    </Link>
   )
 }
 
-export default function BlogCarouselDetail() {
+export default function BlogSection() {
+  const [posts, setPosts] = useState([])
+  const [loading, setLoading] = useState(true)
   const [currentPage, setCurrentPage] = useState(0)
-  const [cardsPerPage, setCardsPerPage] = useState(6)
+  const [cardsPerPage, setCardsPerPage] = useState(4)
   const [animState, setAnimState] = useState('visible')
   const [direction, setDirection] = useState(1)
 
   useEffect(() => {
-    function update() {
+    const fetchPosts = async () => {
+      // Added mainImage.asset->url to the query
+      const query = `*[_type == "post"] | order(publishedAt desc) {
+        tag, title, excerpt, accent,
+        "read": readTime,
+        "date": publishedAt,
+        "slug": slug.current,
+        "mainImage": mainImage.asset->url
+      }`
+      try {
+        const data = await client.fetch(query)
+        setPosts(data.map(p => ({
+          ...p,
+          date: new Date(p.date).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })
+        })))
+      } catch (err) { console.error("Sanity Error:", err) }
+      finally { setLoading(false) }
+    }
+    fetchPosts()
+
+    const update = () => {
       const w = window.innerWidth
-      if (w < 560) setCardsPerPage(1)
-      else if (w < 900) setCardsPerPage(2)
+      if (w < 640) setCardsPerPage(1)
+      else if (w < 1100) setCardsPerPage(2)
+      else if (w < 1400) setCardsPerPage(3)
       else setCardsPerPage(4)
     }
     update()
@@ -222,170 +113,79 @@ export default function BlogCarouselDetail() {
     return () => window.removeEventListener('resize', update)
   }, [])
 
-  const totalPages = Math.ceil(POSTS.length / cardsPerPage)
-  const visiblePosts = POSTS.slice(currentPage * cardsPerPage, currentPage * cardsPerPage + cardsPerPage)
+  const totalPages = Math.ceil(posts.length / cardsPerPage)
+  const visiblePosts = posts.slice(currentPage * cardsPerPage, (currentPage + 1) * cardsPerPage)
 
-  function navigate(dir) {
+  const navigate = (dir) => {
     const next = currentPage + dir
     if (next < 0 || next >= totalPages) return
-    setDirection(dir)
-    setAnimState('exit')
+    setDirection(dir); setAnimState('exit')
     setTimeout(() => {
-      setCurrentPage(next)
-      setAnimState('enter')
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => setAnimState('visible'))
-      })
-    }, 200)
+      setCurrentPage(next); setAnimState('enter')
+      requestAnimationFrame(() => requestAnimationFrame(() => setAnimState('visible')))
+    }, 250)
   }
 
-  function goToPage(i) {
-    if (i === currentPage) return
-    const dir = i > currentPage ? 1 : -1
-    setDirection(dir)
-    setAnimState('exit')
-    setTimeout(() => {
-      setCurrentPage(i)
-      setAnimState('enter')
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => setAnimState('visible'))
-      })
-    }, 200)
-  }
-
-  const slideStyle = {
-    transition: animState === 'visible' ? 'opacity 0.25s ease, transform 0.25s ease' : 'none',
-    opacity: animState === 'visible' ? 1 : 0,
-    transform:
-      animState === 'exit'
-        ? `translateX(${direction > 0 ? '-24px' : '24px'})`
-        : animState === 'enter'
-        ? `translateX(${direction > 0 ? '24px' : '-24px'})`
-        : 'translateX(0)',
-  }
+  if (loading) return (
+    <div className="h-[700px] flex items-center justify-center bg-[#0c0c0c]">
+      <div className="text-white/10 tracking-[0.6em] uppercase text-[10px] animate-pulse font-['DM_Sans']">Syncing Rituals</div>
+    </div>
+  )
 
   return (
-    <section className="bg-[#0c0c0c] py-16">
-
-      {/* Header */}
-      <div className="text-center mb-10 px-6 mt-14">
-        <p
-          className="text-[28px] tracking-[0.2em] text-white uppercase mb-3"
-          style={{ fontFamily: 'DM Sans, sans-serif' }}
-        >
-          From the journal Thoughts on rest, rhythm &amp; the body
+    <section className="bg-[#0c0c0c] py-28 border-t border-white/5">
+      <div className="text-center mb-20 px-6">
+        <p className="text-[18px] font-bold tracking-[0.5em] text-white uppercase mb-5 font-['DM_Sans']">
+          The Journal
         </p>
-        <h2
-          className="text-[clamp(26px,4vw,42px)] font-semibold text-white/90 tracking-tight leading-tight max-w-xl mx-auto mb-5"
-          style={{ fontFamily: 'Playfair Display, Georgia, serif' }}
-        >
-         
-        </h2>
-        <div className="mx-auto w-12 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+         <h2 className="text-3xl font-['Playfair_Display'] text-white uppercase ">Thoughts on rest, rhythm & the body</h2>
+        <div className="mx-auto w-16 h-px bg-white/10" />
       </div>
 
-      {/* Carousel */}
-      <div className="relative px-11 md:px-14 max-w-full mx-auto">
+      <div className="relative px-8 md:px-20 max-w-[1700px] mx-auto">
+        {/* Navigation Buttons */}
+        <button onClick={() => navigate(-1)} disabled={currentPage === 0} 
+                className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full border border-white/5 text-white/20 hover:bg-white hover:text-black hover:border-white disabled:opacity-0 transition-all duration-500 flex items-center justify-center backdrop-blur-sm">‹</button>
+        
+        <button onClick={() => navigate(1)} disabled={currentPage >= totalPages - 1} 
+                className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full border border-white/5 text-white/20 hover:bg-white hover:text-black hover:border-white disabled:opacity-0 transition-all duration-500 flex items-center justify-center backdrop-blur-sm">›</button>
 
-        {/* Prev */}
-        <button
-          onClick={() => navigate(-1)}
-          disabled={currentPage === 0}
-          className="
-            absolute left-0 top-1/2 -translate-y-1/2 z-10
-            w-9 h-9 rounded-full
-            border border-white/10 bg-white/[0.04]
-            flex items-center justify-center
-            text-white/40 text-xl
-            transition-all duration-200
-            hover:bg-white/10 hover:border-white/25 hover:text-white/70
-            disabled:opacity-20 disabled:cursor-not-allowed
-          "
-          aria-label="Previous"
-        >
-          ‹
-        </button>
-
-        {/* Grid */}
-        <div
-          style={{
-            ...slideStyle,
-            display: 'grid',
-            gap: '18px',
-            gridTemplateColumns: `repeat(${cardsPerPage}, minmax(0, 1fr))`,
-          }}
-        >
+        {/* The Grid */}
+        <div style={{
+          display: 'grid',
+          gap: '32px',
+          gridTemplateColumns: `repeat(${cardsPerPage}, minmax(0, 1fr))`,
+          transition: 'opacity 0.4s ease, transform 0.4s ease',
+          opacity: animState === 'visible' ? 1 : 0,
+          transform: animState === 'exit' ? `translateY(10px)` : animState === 'enter' ? `translateY(-10px)` : 'none'
+        }}>
           {visiblePosts.map((post, i) => (
-            <BlogCard
-              key={`${currentPage}-${i}`}
-              post={post}
-              index={currentPage * cardsPerPage + i}
-            />
+            <BlogCard key={post.slug || i} post={post} index={currentPage * cardsPerPage + i} />
           ))}
         </div>
-
-        {/* Next */}
-        <button
-          onClick={() => navigate(1)}
-          disabled={currentPage >= totalPages - 1}
-          className="
-            absolute right-0 top-1/2 -translate-y-1/2 z-10
-            w-9 h-9 rounded-full
-            border border-white/10 bg-white/[0.04]
-            flex items-center justify-center
-            text-white/40 text-xl
-            transition-all duration-200
-            hover:bg-white/10 hover:border-white/25 hover:text-white/70
-            disabled:opacity-20 disabled:cursor-not-allowed
-          "
-          aria-label="Next"
-        >
-          ›
-        </button>
       </div>
 
-      {/* Dots + counter */}
-      <div className="flex flex-col items-center gap-2.5 mt-7">
-        <div className="flex items-center gap-2">
+      {/* Progress Bar / Pagination */}
+      <div className="flex flex-col items-center gap-8 mt-20">
+        <div className="flex gap-3">
           {Array.from({ length: totalPages }).map((_, i) => (
-            <button
-              key={i}
-              onClick={() => goToPage(i)}
-              className="rounded-full transition-all duration-300"
-              style={{
-                width: i === currentPage ? '22px' : '7px',
-                height: '7px',
-                background: i === currentPage ? 'rgba(255,255,255,0.5)' : 'rgba(255,255,255,0.12)',
-                border: 'none',
-                cursor: 'pointer',
-                padding: 0,
+            <button 
+              key={i} 
+              onClick={() => {
+                setDirection(i > currentPage ? 1 : -1)
+                setAnimState('exit')
+                setTimeout(() => { setCurrentPage(i); setAnimState('enter'); setTimeout(() => setAnimState('visible'), 50)}, 250)
               }}
-              aria-label={`Go to page ${i + 1}`}
+              className={`h-[2px] transition-all duration-700 ${i === currentPage ? 'w-12 bg-white/60' : 'w-4 bg-white/10 hover:bg-white/30'}`} 
             />
           ))}
         </div>
-        <span
-          className="text-[11px] text-white/18 tracking-widest"
-          style={{ fontFamily: 'DM Sans, sans-serif' }}
-        >
-          {currentPage + 1} / {totalPages}
-        </span>
-      </div>
-
-      {/* CTA */}
-      <div className="text-center mt-6">
-        <button
-          className="
-            px-6 py-2.5 rounded-full
-            border border-white/10 text-white text-[12px]
-            transition-all duration-300
-          "
-          style={{ fontFamily: 'DM Sans, sans-serif' }}
-        >
-          View all articles →
+        
+        <button className="group flex flex-col items-center gap-3">
+            <span className="text-[10px] uppercase tracking-[0.4em] text-white/30 group-hover:text-white transition-colors duration-500">View All Entries</span>
+            <div className="w-px h-8 bg-white/10 group-hover:h-12 transition-all duration-500" />
         </button>
       </div>
-
     </section>
   )
 }
