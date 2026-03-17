@@ -78,19 +78,18 @@ export default function Footer() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-12 px-6 md:px-16 py-16 border-b border-gray-900">
 
         {/* Column 1 — Brand */}
-        <div className="flex flex-col gap-6">
-         <div className="flex flex-col items-start justify-start">
-  <img 
-    src="https://res.cloudinary.com/dgfxvpxbr/image/upload/v1773756722/WhatsApp_Image_2026-03-17_at_7.41.15_PM_bfjx1m.jpg" 
-    alt="ESVAYA Sensory Wellness House"
-    className="h-20 w-auto mix-blend-mode:color-dodge" // Blends the PNG on a black bg
-    style={{
-      height: '80px', // Force height for sharp rendering
-      maxWidth: '250px', 
-      objectFit: 'contain' // Prevents stretching
-    }}
-  />
-</div>
+ <div className="flex flex-col gap-6">
+          <div>
+            <p
+              className="font-bold tracking-widest text-gray-100 mb-1"
+              style={{ fontFamily: 'Playfair Display, serif', fontSize: 22, letterSpacing: '0.35em' }}
+            >
+              ESVAYA
+            </p>
+            <p className="text-gray-600 uppercase tracking-widest" style={{ fontSize: 8 }}>
+              Sensory Wellness House
+            </p>
+          </div>
 
           <p
             className="text-gray-500 leading-relaxed italic"
