@@ -110,7 +110,7 @@ export default function BlogDetail() {
           </div>
 
           <footer className="mt-32 pt-16 border-t border-white/5 text-center">
-            <Link to="/" className="group inline-flex flex-col items-center">
+            <Link to="/blog" className="group inline-flex flex-col items-center">
               <span className="text-xs tracking-[0.4em] text-white mb-4 transition-colors">End of entry</span>
               <div className="w-px h-12 bg-gradient-to-b from-white/20 to-transparent" />
             </Link>
