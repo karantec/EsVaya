@@ -23,11 +23,11 @@ const products = [
   {
     time: "EVENING",
     italic: "Unwind",
-    rest: " Night Ritual",
+    rest: " Ritual",
     steps: [
       "Two sprays on your linen or pillow",
-      "Five slow breaths through your nose",
-      "No screens for the next fifteen minutes",
+      "5 slow breaths through your nose",
+      "No screens for the next 15 minutes",
       "Built with Rosemary, Peppermint, Basil, Frankincense"
     ],
     signal: "Your brain receives the signal: it is over.",
@@ -171,7 +171,7 @@ function WaitlistButton() {
 
 function ProductCard({ product }) {
   return (
-    <div className="flex flex-col pt-1">
+    <div className="flex flex-col py-8">
       <p className="text-[11px] tracking-[0.28em] text-white mb-4 flex items-center gap-3">
         {product.time}
         <span className="inline-block w-10 h-px bg-white/15" />

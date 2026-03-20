@@ -1,5 +1,6 @@
-
 import { Routes, Route } from "react-router-dom";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 import Footer from "./Components/Footer";
 import GetInTouch from "./Components/Contact";
@@ -12,7 +13,6 @@ import Hero from "./Components/HeroSection";
 import EsvayaSection from "./Components/EsvayaSection";
 import Ritual from "./Components/Ritual";
 import BlogCarouselDetail from "./Components/BlogSection";
-
 import BlogDetail from "./Components/BlogDetail";
 import EsvayaPolicies from "./Components/EssayPolicies";
 import EsvayaFAQ from "./Components/Faq";
@@ -20,24 +20,30 @@ import Prod from "./Components/Prod";
 import ProdJournal from "./Components/ProdJournal";
 import ProdStory from "./Components/ProdStory";
 
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [pathname]);
+  return null;
+}
+
 const App = () => {
   return (
     <>
       <EsvayaHero />
-    
+      <ScrollToTop />
 
       <Routes>
         <Route
           path="/"
           element={
-            <>  <Hero/>
+            <>
+              <Hero />
               <TypewriterSection />
-              <EsvayaSection/>
-               <BlogCarousel/>
-              <GetInTouch/>
-             
-             
-            
+              <EsvayaSection />
+              <BlogCarousel />
+              <GetInTouch />
             </>
           }
         />
@@ -46,12 +52,8 @@ const App = () => {
         <Route path="/thearchitecture" element={<Prod />} />
         <Route path="/story" element={<ProdStory />} />
         <Route path="/faq" element={<EsvayaFAQ />} />
-  <Route path="/policies" element={<EsvayaPolicies />} />
-        {/* <Route path="/postBlogs" element={<BlogEditor />} /> */}
+        <Route path="/policies" element={<EsvayaPolicies />} />
         <Route path="/ritual" element={<Ritual />} />
-        {/* <Route path="/blog" element={<BlogCarousel />} /> */}
-
-        {/* <Route path="/contact" element={<GetInTouch />} /> */}
       </Routes>
 
       <Footer />

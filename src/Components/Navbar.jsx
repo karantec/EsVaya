@@ -33,7 +33,7 @@ export default function Navbar() {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "py-3 bg-black/90 backdrop-blur-xl border-b border-white/10"
+          ? "py-3 bg-black backdrop-blur-xl border-b border-white/10"
           : "py-6 bg-transparent"
       }`}
     >
@@ -53,13 +53,10 @@ export default function Navbar() {
               key={to}
               to={to}
               className={({ isActive }) =>
-                `relative font-serif tracking-widest text-[20px] transition-colors duration-200 no-underline
+                `relative font-serif tracking-widest text-[25px] transition-colors duration-200 no-underline
                  after:absolute after:bottom-[-3px] after:left-0 after:h-px after:bg-white
                  after:transition-all after:duration-300
-                 ${isActive
-                   ? "text-black after:w-full"
-                   : "text-white hover:text-white after:w-0 hover:after:w-full"
-                 }`
+                 ${isActive ? "text-white" : "text-white hover:text-white"}`
               }
             >
               {label}
