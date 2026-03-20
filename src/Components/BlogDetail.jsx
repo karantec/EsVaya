@@ -42,7 +42,7 @@ export default function BlogDetail() {
     <div className="bg-[#0c0c0c] min-h-screen text-white font-['DM_Sans'] selection:bg-white selection:text-black">
       {/* Subtle Nav */}
       <nav className="p-8 border-b border-white/5 flex justify-between items-center sticky top-0 bg-[#0c0c0c]/90 backdrop-blur-md z-50">
-        <Link to="/" className="text-[10px] tracking-[0.3em] uppercase opacity-40 hover:opacity-100 transition-all">
+        <Link to="/blog" className="text-[10px] tracking-[0.3em] uppercase opacity-40 hover:opacity-100 transition-all">
           ← Return to Journal
         </Link>
         <span className="font-['Playfair_Display'] italic opacity-60 text-lg">Esvaya</span>
@@ -81,7 +81,7 @@ export default function BlogDetail() {
         )}
 
         {/* 3. Long Story Content Area */}
-        <div className="max-w-2xl mx-auto px-6">
+        <div className="max-w-6xl mx-auto px-6">
           <div className="prose prose-invert max-w-none 
             text-white/70 leading-[1.8] text-lg font-light
             prose-headings:font-['Playfair_Display'] prose-headings:text-white prose-headings:font-semibold
