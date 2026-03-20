@@ -24,14 +24,14 @@ const navItems = [
     title: "The Architecture",
     sub: "Designed around a single insight",
     desc: "Your nervous system responds to signals. Learn how every element of the kit is architected to deliver them.",
-    href: "/architecture",
+    href: "/thearchitecture",
   },
   {
     tag: "Origin",
     title: "Origin of Esvaya",
     sub: "It started with a feeling",
     desc: "Not in a lab — but with the quiet depletion of someone performing fine at everything, and present in none of it.",
-    href: "/our-story",
+    href: "/story",
   },
   {
     tag: "Ritual",

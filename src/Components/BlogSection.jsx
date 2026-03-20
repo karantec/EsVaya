@@ -138,7 +138,7 @@ export default function BlogSection() {
         <p className="text-[18px] font-bold tracking-[0.5em] text-white uppercase mb-5 font-['DM_Sans']">
           The Journal
         </p>
-         <h2 className="text-3xl font-['Playfair_Display'] text-white uppercase ">Thoughts on rest, rhythm & the body</h2>
+         <h2 className="text-4xl font-['Playfair_Display'] text-white  ml-3  ">Thoughts on rest, rhythm & the body</h2>
         <div className="mx-auto w-16 h-px bg-white/10" />
       </div>
 
