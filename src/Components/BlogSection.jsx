@@ -182,7 +182,7 @@ export default function BlogSection() {
         </div>
         
         <button className="group flex flex-col items-center gap-3">
-            <span className="text-[10px] uppercase tracking-[0.4em] text-white/30 group-hover:text-white transition-colors duration-500">View All Entries</span>
+            <span className="text-[10px]  tracking-[0.4em] text-white  transition-colors duration-500">View All Entries</span>
             <div className="w-px h-8 bg-white/10 group-hover:h-12 transition-all duration-500" />
         </button>
       </div>

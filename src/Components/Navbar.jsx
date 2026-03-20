@@ -67,14 +67,7 @@ export default function Navbar() {
           ))}
 
           {/* Grid icon */}
-          <button className="w-8 h-8 border border-white/15 rounded-sm flex items-center justify-center hover:border-white/45 hover:bg-white/5 transition-all duration-200">
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-              <rect x="0.5" y="0.5" width="4" height="4" stroke="white" strokeOpacity="0.45" strokeWidth="0.8"/>
-              <rect x="7.5" y="0.5" width="4" height="4" stroke="white" strokeOpacity="0.45" strokeWidth="0.8"/>
-              <rect x="0.5" y="7.5" width="4" height="4" stroke="white" strokeOpacity="0.45" strokeWidth="0.8"/>
-              <rect x="7.5" y="7.5" width="4" height="4" stroke="white" strokeOpacity="0.45" strokeWidth="0.8"/>
-            </svg>
-          </button>
+         
         </div>
 
         {/* Mobile right side */}

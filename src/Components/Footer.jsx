@@ -38,26 +38,7 @@ const socialLinks = [
       </svg>
     ),
   },
-  {
-  label: 'FAQ',
-  href: '/faq', // Adjust to your actual FAQ route
-  icon: (
-    <svg 
-      width="16" 
-      height="16" 
-      viewBox="0 0 24 24" 
-      fill="none" 
-      stroke="currentColor" 
-      strokeWidth="1.5" 
-      strokeLinecap="round" 
-      strokeLinejoin="round"
-    >
-      <circle cx="12" cy="12" r="10" />
-      <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
-      <line x1="12" y1="17" x2="12.01" y2="17" />
-    </svg>
-  ),
-},
+ 
 ]
 
 export default function Footer() {
@@ -118,7 +99,7 @@ export default function Footer() {
         {/* Column 2 — Navigation */}
         <div className="flex flex-col">
           <span
-            className="text-gray-700 uppercase tracking-widest mb-6 block"
+            className="text-white uppercase tracking-widest mb-6 block"
             style={{ fontSize: 8 }}
           >
             Navigate
@@ -128,10 +109,10 @@ export default function Footer() {
             <a
               key={label}
               href={href}
-              className="flex justify-between items-center py-3 border-b border-gray-900 text-gray-500 hover:text-gray-200 transition-colors duration-200 text-sm tracking-wider"
+              className="flex justify-between items-center py-3 border-b border-gray-900 text-white transition-colors duration-200 text-sm tracking-wider"
             >
               {label}
-              <span className="text-gray-700 text-xs">↗</span>
+              <span className="text-white text-md">↗</span>
             </a>
           ))}
         </div>
@@ -196,7 +177,16 @@ export default function Footer() {
             <a
               key={item}
               href={`/policies`}
-              className="text-gray-700 hover:text-gray-400 uppercase tracking-widest text-xs transition-colors duration-200"
+              className="text-white uppercase tracking-widest text-xs transition-colors duration-200"
+            >
+              {item}
+            </a>
+          ))}
+           {['Faq'].map(item => (
+            <a
+              key={item}
+              href={`/faq`}
+              className="text-white uppercase tracking-widest text-xs transition-colors duration-200"
             >
               {item}
             </a>

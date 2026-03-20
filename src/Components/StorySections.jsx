@@ -89,9 +89,7 @@ function RejectionCard({ item, i, inView }) {
       }}
       className={[
         "relative overflow-hidden rounded-2xl p-5 cursor-default border",
-        hovered
-          ? "bg-neutral-950 border-neutral-800 -translate-y-1 shadow-xl"
-          : "bg-neutral-100 border-neutral-200",
+       
       ].join(" ")}
     >
       <div className={[
@@ -100,12 +98,11 @@ function RejectionCard({ item, i, inView }) {
       ].join(" ")} style={{ transition: "width 0.4s ease" }} />
 
       <p className={[
-        "font-dm text-sm font-bold mb-1.5 transition-colors duration-200",
-        hovered ? "text-white" : "text-neutral-900",
+        "font-dm text-1xl font-bold mb-1.5 transition-colors duration-200",
       ].join(" ")}>{item.label}</p>
       <p className={[
-        "font-dm text-xs leading-snug transition-colors duration-200",
-        hovered ? "text-neutral-400" : "text-neutral-500",
+        " text-1xl leading-snug transition-colors duration-200 text-black",
+      
       ].join(" ")}>{item.reason}</p>
     </div>
   );
@@ -252,8 +249,8 @@ export default function EsvayaStory() {
       {/* ── HERO ── */}
       <section className="w-full px-5 sm:px-8 md:px-12 lg:px-16 xl:px-24 2xl:px-32 pt-16 sm:pt-20 lg:pt-28 pb-14 lg:pb-20">
     <div className="flex items-center justify-center w-full">
-  <div className="inline-flex items-center justify-center mt-14 px-8 py-3.5 bg-black border-[2.5px] border-black rounded-lg">
-    <h2 className="font-dm text-[25px] font-bold tracking-[0.28em] uppercase text-white m-0">
+  <div className="inline-flex items-center justify-center mt-14 px-8   rounded-lg">
+    <h2 className=" fade-up-2 font-fraunces text-6xl sm:text-7xl lg:text-8xl xl:text-[9rem] font-black leading-[1.0] text-neutral-950">
       Origin of Esvaya
     </h2>
   </div>
@@ -264,10 +261,10 @@ export default function EsvayaStory() {
           <div className="md:sticky md:top-8">
             
 
-            <h1 className="fade-up-2 font-fraunces text-6xl sm:text-7xl lg:text-8xl xl:text-[9rem] font-black leading-[1.0] text-neutral-950">
+            <h1 className="fade-up-2 text-6xl sm:text-7xl lg:text-8xl xl:text-[9rem]  leading-[1.0] text-neutral-950">
               Built from
               <br />
-              <em className="font-light italic">Experience.</em>
+              <em className="fade-up-2 font-fraunces text-6xl sm:text-7xl lg:text-8xl xl:text-[9rem] font-black leading-[1.0] text-neutral-950">Experience.</em>
             </h1>
 
             

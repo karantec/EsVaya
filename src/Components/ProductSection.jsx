@@ -5,6 +5,7 @@ import { GrTest } from "react-icons/gr";
 import { LiaRecycleSolid } from "react-icons/lia";
 import { MdOutlineCrueltyFree } from "react-icons/md";
 import { TbBiohazardOff } from "react-icons/tb";
+import SingleImage from "./ProdImageCrousel";
 
 const products = [
   {
@@ -15,6 +16,7 @@ const products = [
       "Apply on wrist or temple",
       "One slow inhale through the nose",
       "Hold the breath for four counts",
+      "Built with Lavender, Clary Sage, Vetiver"
     ],
     signal: "Your brain receives the signal: begin.",
   },
@@ -26,6 +28,7 @@ const products = [
       "Two sprays on your linen or pillow",
       "Five slow breaths through your nose",
       "No screens for the next fifteen minutes",
+      "Built with Rosemary, Peppermint, Basil, Frankincense"
     ],
     signal: "Your brain receives the signal: it is over.",
   },
@@ -194,12 +197,12 @@ function ProductCard({ product }) {
 function CenterImage() {
   return (
     <div className="flex flex-col items-center pt-8 px-8">
-      <div className="relative w-64 flex-shrink-0 rounded-sm overflow-hidden border border-white/[0.08]"
+      <div className="relative w-96 flex-shrink-0 rounded-sm overflow-hidden border border-white/[0.08]"
        >
         <img
           src="https://res.cloudinary.com/dgfxvpxbr/image/upload/v1773753065/WhatsApp_Image_2026-03-17_at_8.57.25_AM_hpzpd4.jpg"
           alt="Esvaya Ritual Kit"
-          className="w-full h-[300px] object-fill"
+          className="w-full h-[300px] "
         />
         {/* Subtle overlay for depth */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
@@ -276,12 +279,16 @@ function BadgesSection() {
 
 export default function EsvayaProductSection() {
   return (
-    <div className="bg-[#080808] min-h-screen py-20" style={{ fontFamily: "'Montserrat', sans-serif" }}>
+
+    <>
+  
+   
+    <div className="bg-[#000000] min-h-screen py-20" style={{ fontFamily: "'Montserrat', sans-serif" }}>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Montserrat:wght@300;400;500;600&display=swap');
         .font-serif { font-family: 'Cormorant Garamond', Georgia, serif; }
       `}</style>
-
+       
       {/* Intro */}
       <section className="pt-16 pb-0  px-10 text-center max-w-3xl mx-auto">
         <p className="font-serif text-xl md:text-2xl text-white/85 italic leading-relaxed">
@@ -306,5 +313,6 @@ export default function EsvayaProductSection() {
       {/* Badges */}
       <BadgesSection />
     </div>
+     </>
   );
 }

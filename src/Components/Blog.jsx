@@ -121,7 +121,7 @@ export default function BlogCarousel() {
         <div className="flex justify-center items-center mb-12 px-2">
           <div>
         
-            <h2 className="text-3xl font-['Playfair_Display'] text-white uppercase ">Thoughts on rest, rhythm & the body</h2>
+            <h2 className="text-4xl font-['Playfair_Display'] text-white  ml-3 ">Thoughts on Rest, Rhythm & The Body</h2>
           </div>
           <div className="flex gap-4 mb-1">
              <button 

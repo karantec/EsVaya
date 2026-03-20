@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { client } from '../sanityClient'
 import { PortableText } from '@portabletext/react'
+import BlogCarousel from './Blog'
 
 export default function BlogDetail() {
   const { slug } = useParams()
@@ -110,11 +111,14 @@ export default function BlogDetail() {
 
           <footer className="mt-32 pt-16 border-t border-white/5 text-center">
             <Link to="/" className="group inline-flex flex-col items-center">
-              <span className="text-xs uppercase tracking-[0.4em] text-white/20 mb-4 group-hover:text-white/40 transition-colors">End of entry</span>
+              <span className="text-xs tracking-[0.4em] text-white mb-4 transition-colors">End of entry</span>
               <div className="w-px h-12 bg-gradient-to-b from-white/20 to-transparent" />
             </Link>
           </footer>
+
+         
         </div>
+         <BlogCarousel/>
       </article>
     </div>
   )
