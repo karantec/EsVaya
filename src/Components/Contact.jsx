@@ -22,6 +22,12 @@ const values = [
     title: 'NO DEPENDENCY. EVER.',
     desc: "The goal is to make ourselves unnecessary. By Day 30, your body signals itself.",
   },
+
+    {
+    num: '05',
+    title: 'Natural Entirely.',
+    desc: "No Synthetic.Just plants extracts, distilled carefully , for a body that deserves better than chemicals",
+  },
 ]
 
 const contactInfo = [
